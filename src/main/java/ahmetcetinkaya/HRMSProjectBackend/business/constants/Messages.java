@@ -29,4 +29,8 @@ public class Messages {
 	public static String mernisActivationDeleted = "Mernis Activation has deleted.";
 	public static String mernisActivationVerified = "Mernis activation has been verified.";
 	public static String mernisActivationNotVerified = "Mernis activation could not be verified.";
+
+	public static String companyStaffVerificationAdded = "Company Staff Verification has added.";
+	public static String companyStaffVerificationUpdated = "Company Staff Verification has updated.";
+	public static String companyStaffVerificationDeleted = "Company Staff Verification has deleted.";
 }
