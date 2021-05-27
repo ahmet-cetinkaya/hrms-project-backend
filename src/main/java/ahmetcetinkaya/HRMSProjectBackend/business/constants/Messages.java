@@ -8,6 +8,13 @@ public class Messages {
 	public static String userNotFound = "User not found.";
 	public static String userWithMailAlreadyExits = "A user with the mail already exists.";
 
+
+	public static String jobSeekerAdded = "Job Seeker has added.";
+	public static String jobSeekerUpdated = "Job Seeker has updated.";
+	public static String jobSeekerDeleted = "Job Seeker has deleted.";
+	public static String jobSeekerNotFound = "Job Seeker not found.";
+	public static String jobSeekerWithIdentityNumberAlreadyExits = "A job seeker with the identity number already exists.";
+
 	public static String emailActivationAdded = "Email Activation has added.";
 	public static String emailActivationUpdated = "Email Activation has updated.";
 	public static String emailActivationDeleted = "Email Activation has deleted.";
