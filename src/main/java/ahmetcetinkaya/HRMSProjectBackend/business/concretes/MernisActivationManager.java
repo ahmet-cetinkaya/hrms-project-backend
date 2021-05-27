@@ -1,6 +1,7 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.MernisActivationServ
 import ahmetcetinkaya.HRMSProjectBackend.business.adapters.mernisService.PersonForValidateFromMernisService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessResult;
@@ -53,9 +55,12 @@ public class MernisActivationManager implements MernisActivationService {
 
 	@Override
 	public DataResult<MernisActivation> getById(final int id) {
-		final MernisActivation mernisActivation = mernisActivationDao.findById(id).get();
+		final Optional<MernisActivation> mernisActivation = mernisActivationDao.findById(id);
 
-		return new SuccessDataResult<MernisActivation>(mernisActivation);
+		if (mernisActivation.isEmpty())
+			return new ErrorDataResult<MernisActivation>(Messages.mernisActivationNotFound);
+
+		return new SuccessDataResult<MernisActivation>(mernisActivation.get());
 	}
 
 	@Override

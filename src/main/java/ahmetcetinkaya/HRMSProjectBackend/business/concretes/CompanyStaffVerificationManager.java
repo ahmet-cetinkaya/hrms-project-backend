@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.CompanyStaffVerificationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
@@ -48,9 +49,12 @@ public class CompanyStaffVerificationManager implements CompanyStaffVerification
 
 	@Override
 	public DataResult<CompanyStaffVerification> getById(final int id) {
-		final CompanyStaffVerification companyStaffVerification = companyStaffVerificationDao.findById(id).get();
+		final Optional<CompanyStaffVerification> companyStaffVerification = companyStaffVerificationDao.findById(id);
 
-		return new SuccessDataResult<CompanyStaffVerification>(companyStaffVerification);
+		if (companyStaffVerification.isEmpty())
+			return new ErrorDataResult<CompanyStaffVerification>(Messages.companyStaffVerificationNotFound);
+
+		return new SuccessDataResult<CompanyStaffVerification>(companyStaffVerification.get());
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,23 +57,26 @@ public class UserManager implements UserService {
 
 	@Override
 	public DataResult<User> getByEmail(final String email) {
-		final User user = userDao.findByEmail(email);
+		final Optional<User> user = userDao.findByEmail(email);
 
-		if (user == null)
+		if (user.isEmpty())
 			return new ErrorDataResult<User>(Messages.userNotFound);
 
-		return new SuccessDataResult<User>(user);
+		return new SuccessDataResult<User>(user.get());
 	}
 
 	@Override
 	public DataResult<User> getById(final int id) {
-		final User user = userDao.findById(id).get();
+		final Optional<User> user = userDao.findById(id);
 
-		return new SuccessDataResult<User>(user);
+		if (user.isEmpty())
+			new ErrorDataResult<User>(Messages.userNotFound);
+
+		return new SuccessDataResult<User>(user.get());
 	}
 
 	private Result isNotEmailExist(final String email) {
-		return userDao.findByEmail(email) == null ? new SuccessResult()
+		return !userDao.findByEmail(email).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.userWithMailAlreadyExits);
 	}
 

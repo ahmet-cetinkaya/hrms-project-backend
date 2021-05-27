@@ -1,6 +1,7 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmailActivationServi
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.email.EmailService;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
@@ -64,9 +66,12 @@ public class EmailActivationManager implements EmailActivationService {
 
 	@Override
 	public DataResult<EmailActivation> getById(final int id) {
-		final EmailActivation emailActivation = emailActivationDao.findById(id).get();
+		final Optional<EmailActivation> emailActivation = emailActivationDao.findById(id);
 
-		return new SuccessDataResult<EmailActivation>(emailActivation);
+		if (emailActivation.isEmpty())
+			return new ErrorDataResult<EmailActivation>(Messages.emailActivationNotFound);
+
+		return new SuccessDataResult<EmailActivation>(emailActivation.get());
 	}
 
 	@Override
@@ -78,15 +83,15 @@ public class EmailActivationManager implements EmailActivationService {
 
 	@Override
 	public Result verify(final EmailActivationForVerifyDto emailActivationForVerifyDto) {
-		final EmailActivation emailActivation = emailActivationDao.findByEmailAndAuthToken(
+		final Optional<EmailActivation> emailActivation = emailActivationDao.findByEmailAndAuthToken(
 				emailActivationForVerifyDto.getEmail(),
 				emailActivationForVerifyDto.getAuthToken());
 
-		if (emailActivation == null)
+		if (emailActivation.isEmpty())
 			return new ErrorResult(Messages.emailNotVerified);
 
-		emailActivation.setApproved(true);
-		emailActivationDao.save(emailActivation);
+		emailActivation.get().setApproved(true);
+		emailActivationDao.save(emailActivation.get());
 
 		return new SuccessResult(Messages.emailVerified);
 	}

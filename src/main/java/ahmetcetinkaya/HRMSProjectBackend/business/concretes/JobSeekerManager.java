@@ -1,6 +1,7 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,19 +65,22 @@ public class JobSeekerManager implements JobSeekerService {
 
 	@Override
 	public DataResult<JobSeeker> getById(final int id) {
-		final JobSeeker jobSeeker = jobSeekerDao.findById(id).get();
+		final Optional<JobSeeker> jobSeeker = jobSeekerDao.findById(id);
 
-		return new SuccessDataResult<JobSeeker>(jobSeeker);
+		if (jobSeeker.isEmpty())
+			return new ErrorDataResult<JobSeeker>(Messages.jobSeekerNotFound);
+
+		return new SuccessDataResult<JobSeeker>(jobSeeker.get());
 	}
 
 	@Override
 	public DataResult<JobSeeker> getByIdentityNumber(final String identityNumber) {
-		final JobSeeker jobSeeker = jobSeekerDao.findByIdentityNumber(identityNumber);
+		final Optional<JobSeeker> jobSeeker = jobSeekerDao.findByIdentityNumber(identityNumber);
 
-		if (jobSeeker == null)
+		if (jobSeeker.isEmpty())
 			return new ErrorDataResult<JobSeeker>(Messages.jobSeekerNotFound);
 
-		return new SuccessDataResult<JobSeeker>(jobSeeker);
+		return new SuccessDataResult<JobSeeker>(jobSeeker.get());
 	}
 
 	private Result isNotNationalIdentityExist(final String identityNumber) {
