@@ -16,6 +16,13 @@ public class Messages {
 	public static String jobSeekerNotFound = "Job Seeker not found.";
 	public static String jobSeekerWithIdentityNumberAlreadyExits = "A job seeker with the identity number already exists.";
 
+	public static String employerAdded = "Employer has added.";
+	public static String employerUpdated = "Employer has updated.";
+	public static String employerDeleted = "Employer has deleted.";
+	public static String employerRegistered = "Employer registration is complete.";
+	public static String employerNotFound = "Employer not found.";
+	public static String employerWithCorporateEmailAlreadyExits = "A employer with the corporate email already exists.";
+
 	public static String emailActivationAdded = "Email Activation has added.";
 	public static String emailActivationUpdated = "Email Activation has updated.";
 	public static String emailActivationDeleted = "Email Activation has deleted.";
@@ -25,6 +32,7 @@ public class Messages {
 	public static String emailVerified = "E-mail has been verified.";
 	public static String emailNotVerified = "E-mail could not be verified.";
 	public static String emailActivationNotFound = "Email Activation not found.";
+	public static String emailNotCorporate = "Your email must be a corporate email created with your domain name.";
 
 	public static String mernisActivationAdded = "Mernis Activation has added.";
 	public static String mernisActivationUpdated = "Mernis Activation has updated.";
