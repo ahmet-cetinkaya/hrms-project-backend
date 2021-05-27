@@ -16,4 +16,10 @@ public class Messages {
 	public static String emailActivationCreatedAndSent = "Email activation has been created and Activation email has been sent to corresponding email.";
 	public static String emailVerified = "E-mail has been verified.";
 	public static String emailNotVerified = "E-mail could not be verified.";
+
+	public static String mernisActivationAdded = "Mernis Activation has added.";
+	public static String mernisActivationUpdated = "Mernis Activation has updated.";
+	public static String mernisActivationDeleted = "Mernis Activation has deleted.";
+	public static String mernisActivationVerified = "Mernis activation has been verified.";
+	public static String mernisActivationNotVerified = "Mernis activation could not be verified.";
 }
