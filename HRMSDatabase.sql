@@ -2,16 +2,12 @@
 -- Please log an issue at https://redmine.postgresql.org/projects/pgadmin4/issues/new if you find any bugs, including reproduction steps.
 BEGIN;
 
-CREATE SEQUENCE users_id_seq;
 CREATE TABLE public.users
 (
-    id integer NOT NULL PRIMARY KEY DEFAULT nextval('users_id_seq'),
+    id integer NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     email character varying(100) NOT NULL UNIQUE,
-    password_hash bit(500) NOT NULL,
-    password_salt bit(500) NOT NULL
+    password character varying(100) NOT NULL
 );
-ALTER SEQUENCE users_id_seq
-OWNED BY users.id;
 
 CREATE TABLE public.job_seekers
 (
@@ -22,26 +18,21 @@ CREATE TABLE public.job_seekers
     birth_date date NOT NULL
 );
 
-CREATE SEQUENCE mernis_activations_id_seq;
 CREATE TABLE public.mernis_activations
 (
-    id integer NOT NULL PRIMARY KEY DEFAULT nextval('mernis_activations_id_seq'),
+    id integer NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id integer NOT NULL,
     is_approved boolean NOT NULL
 );
-ALTER SEQUENCE mernis_activations_id_seq
-OWNED BY mernis_activations.id;
 
-CREATE SEQUENCE email_activations_id_seq;
 CREATE TABLE public.email_activations
 (
-    id integer NOT NULL PRIMARY KEY DEFAULT nextval('email_activations_id_seq'),
+    id integer NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     user_id integer NOT NULL,
     auth_token character varying(200) NOT NULL,
+    email character varying(100) NOT NULL UNIQUE,
     is_approved boolean NOT NULL
 );
-ALTER SEQUENCE email_activations_id_seq
-OWNED BY email_activations.id;
 
 CREATE TABLE public.employers
 (
@@ -59,25 +50,18 @@ CREATE TABLE public.company_staffs
     last_name character varying(50) NOT NULL
 );
 
-CREATE SEQUENCE company_staff_verifications_id_seq;
 CREATE TABLE public.company_staff_verifications
 (
-    id integer NOT NULL PRIMARY KEY DEFAULT nextval('company_staff_verifications_id_seq'),
-    employers_id integer NOT NULL,
-    authorized_company_staff_id integer NOT NULL,
+    id integer NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id integer NOT NULL,
     is_approved boolean NOT NULL
 );
-ALTER SEQUENCE company_staff_verifications_id_seq
-OWNED BY company_staff_verifications.id;
 
-CREATE SEQUENCE job_positions_id_seq;
 CREATE TABLE public.job_positions
 (
-    id integer NOT NULL PRIMARY KEY DEFAULT nextval('job_positions_id_seq'),
+    id integer NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     title character varying(50) NOT NULL UNIQUE
 );
-ALTER SEQUENCE job_positions_id_seq
-OWNED BY job_positions.id;
 
 ALTER TABLE public.job_seekers
     ADD FOREIGN KEY (user_id)
@@ -110,14 +94,9 @@ ALTER TABLE public.email_activations
 
 
 ALTER TABLE public.company_staff_verifications
-    ADD FOREIGN KEY (employers_id)
-    REFERENCES public.employers (user_id)
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users (id)
     NOT VALID;
 
-
-ALTER TABLE public.company_staff_verifications
-    ADD FOREIGN KEY (authorized_company_staff_id)
-    REFERENCES public.company_staffs (user_id)
-    NOT VALID;
 
 END;
