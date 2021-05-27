@@ -31,7 +31,15 @@
 
 ### Models
 
-[![](https://user-images.githubusercontent.com/53148314/117991060-634ceb00-b346-11eb-8dc5-0c61926af48a.png)](https://user-images.githubusercontent.com/53148314/117991060-634ceb00-b346-11eb-8dc5-0c61926af48a.png)
+[![](https://user-images.githubusercontent.com/53148314/119817328-85be3700-bef6-11eb-852e-b9c71cfda87c.png)](https://user-images.githubusercontent.com/53148314/119817328-85be3700-bef6-11eb-852e-b9c71cfda87c.png)
+
+## Usage
+
+### API Documentation
+
+Please refer to the swagger documentation.
+
+[![API Documentation](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://github.com/ahmet-cetinkaya/hrms-project-backend/blob/master/APIDocumentation.md)
 
 ## Contributing
 
