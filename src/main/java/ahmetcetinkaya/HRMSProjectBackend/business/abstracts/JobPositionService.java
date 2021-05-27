@@ -1,11 +1,8 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.abstracts;
 
-import java.util.List;
-
+import ahmetcetinkaya.HRMSProjectBackend.core.business.BaseService;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobPosition;
 
-public interface JobPositionService {
-	List<JobPosition> getAll();
+public interface JobPositionService extends BaseService<JobPosition> {
 
-	void add(JobPosition jobPosition);
 }

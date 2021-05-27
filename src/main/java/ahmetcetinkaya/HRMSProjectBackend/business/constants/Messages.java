@@ -23,6 +23,12 @@ public class Messages {
 	public static String employerNotFound = "Employer not found.";
 	public static String employerWithCorporateEmailAlreadyExits = "A employer with the corporate email already exists.";
 
+	public static String jobPositionAdded = "Job Position has added.";
+	public static String jobPositionUpdated = "Job Position has updated.";
+	public static String jobPositionDeleted = "Job Position has deleted.";
+	public static String jobPositionWithTitleAlreadyExits = "A job position with the title already exists.";
+	public static String jobPositionNotFound = "Job Position not found.";
+
 	public static String emailActivationAdded = "Email Activation has added.";
 	public static String emailActivationUpdated = "Email Activation has updated.";
 	public static String emailActivationDeleted = "Email Activation has deleted.";
