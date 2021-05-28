@@ -77,15 +77,15 @@ public class EmployerManager implements EmployerService {
 		return email.split("@")[1].equals(website) ? new SuccessResult() : new ErrorResult(Messages.emailNotCorporate);
 	}
 
-	private Result isCorporateEmailExist(final String corporateEmail) {
-		return !employerDao.findByCorporateEmail(corporateEmail).isEmpty() ? new SuccessResult()
+	private Result isNotCorporateEmailExist(final String corporateEmail) {
+		return employerDao.findByCorporateEmail(corporateEmail).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.employerWithCorporateEmailAlreadyExits);
 	}
 
 	@Override
 	public Result register(final EmployerForRegisterDto employerForRegister) {
 		final Result businessRulesResult = BusinessRules.run(
-				isCorporateEmailExist(employerForRegister.getCorporateEmail()),
+				isNotCorporateEmailExist(employerForRegister.getCorporateEmail()),
 				arePasswordMatch(employerForRegister.getPassword(), employerForRegister.getConfirmPassword()),
 				isCorporateEmail(employerForRegister.getCorporateEmail(), employerForRegister.getWebsite()));
 		if (!businessRulesResult.isSuccess())

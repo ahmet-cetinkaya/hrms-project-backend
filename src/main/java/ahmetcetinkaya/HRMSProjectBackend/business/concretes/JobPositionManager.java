@@ -63,7 +63,7 @@ public class JobPositionManager implements JobPositionService {
 	}
 
 	private Result isNotExistsJobPosition(final String title) {
-		return !jobPositionDao.findByTitle(title).isEmpty() ? new SuccessResult()
+		return jobPositionDao.findByTitle(title).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.jobPositionWithTitleAlreadyExits);
 	}
 

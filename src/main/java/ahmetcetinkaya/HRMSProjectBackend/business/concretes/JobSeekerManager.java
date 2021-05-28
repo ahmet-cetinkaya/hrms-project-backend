@@ -84,7 +84,7 @@ public class JobSeekerManager implements JobSeekerService {
 	}
 
 	private Result isNotNationalIdentityExist(final String identityNumber) {
-		return !getByIdentityNumber(identityNumber).isSuccess() ? new SuccessResult()
+		return jobSeekerDao.findByIdentityNumber(identityNumber).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.jobSeekerWithIdentityNumberAlreadyExits);
 	}
 
@@ -110,7 +110,8 @@ public class JobSeekerManager implements JobSeekerService {
 				jobSeekerForRegisterDto.getFirstName(),
 				jobSeekerForRegisterDto.getLastName(),
 				jobSeekerForRegisterDto.getIdentityNumber(),
-				jobSeekerForRegisterDto.getBirthDate());
+				jobSeekerForRegisterDto.getBirthDate(),
+				user);
 		add(jobSeeker);
 
 		final MernisActivation mernisActivation = new MernisActivation(0, user.getId(), true);

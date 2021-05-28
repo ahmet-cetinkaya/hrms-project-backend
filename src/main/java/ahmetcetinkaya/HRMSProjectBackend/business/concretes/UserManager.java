@@ -76,7 +76,7 @@ public class UserManager implements UserService {
 	}
 
 	private Result isNotEmailExist(final String email) {
-		return !userDao.findByEmail(email).isEmpty() ? new SuccessResult()
+		return userDao.findByEmail(email).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.userWithMailAlreadyExits);
 	}
 
