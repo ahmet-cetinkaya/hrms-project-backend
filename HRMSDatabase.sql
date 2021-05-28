@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS public.company_staff_verifications
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     user_id integer NOT NULL,
     is_approved boolean NOT NULL,
+    created_at date NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -23,9 +24,12 @@ CREATE TABLE IF NOT EXISTS public.email_activations
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     user_id integer NOT NULL,
-    auth_token character varying(200) NOT NULL,
+    activation_code character varying(200) NOT NULL,
     email character varying(100) NOT NULL,
     is_approved boolean NOT NULL,
+    created_date date NOT NULL,
+    expiration_date date NOT NULL,
+    activation_date date,
     PRIMARY KEY (id)
 );
 
@@ -43,6 +47,9 @@ CREATE TABLE IF NOT EXISTS public.job_positions
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     title character varying(50) NOT NULL,
+    created_at date NOT NULL,
+    is_active boolean NOT NULL,
+    is_deleted boolean NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -61,6 +68,7 @@ CREATE TABLE IF NOT EXISTS public.mernis_activations
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     user_id integer NOT NULL,
     is_approved boolean NOT NULL,
+    created_at date NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -69,6 +77,9 @@ CREATE TABLE IF NOT EXISTS public.users
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     email character varying(100) NOT NULL,
     password character varying(100) NOT NULL,
+    created_at date NOT NULL,
+    is_active boolean NOT NULL,
+    is_deleted boolean NOT NULL,
     PRIMARY KEY (id)
 );
 
