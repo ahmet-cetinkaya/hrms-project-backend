@@ -6,11 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmailActivationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.UserService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.business.BusinessRules;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.email.EmailService;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorResult;
@@ -25,6 +22,7 @@ public class UserManager implements UserService {
 	private final UserDao userDao;
 
 	@Autowired
+	public UserManager(final UserDao userDao) {
 		this.userDao = userDao;
 	}
 
@@ -69,7 +67,8 @@ public class UserManager implements UserService {
 		return new SuccessDataResult<User>(user.get());
 	}
 
-	private Result isNotEmailExist(final String email) {
+	@Override
+	public Result isNotEmailExist(final String email) {
 		return userDao.findByEmail(email).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.userWithMailAlreadyExits);
 	}

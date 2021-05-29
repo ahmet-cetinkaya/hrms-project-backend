@@ -35,7 +35,7 @@ public class JobPositionManager implements JobPositionService {
 
 		jobPositionDao.save(jobPosition);
 
-		return new SuccessDataResult<JobPosition>(jobPosition, Messages.jobPositionAdded);
+		return new SuccessResult(Messages.jobPositionAdded);
 	}
 
 	@Override
@@ -62,7 +62,8 @@ public class JobPositionManager implements JobPositionService {
 		return new SuccessDataResult<JobPosition>(jobPosition.get());
 	}
 
-	private Result isNotExistsJobPosition(final String title) {
+	@Override
+	public Result isNotExistsJobPosition(final String title) {
 		return jobPositionDao.findByTitle(title).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.jobPositionWithTitleAlreadyExits);
 	}

@@ -58,6 +58,17 @@ public class CompanyStaffVerificationManager implements CompanyStaffVerification
 	}
 
 	@Override
+	public DataResult<CompanyStaffVerification> getByUserId(final int userId) {
+		final Optional<CompanyStaffVerification> companyStaffVerification = companyStaffVerificationDao
+				.findByUser_Id(userId);
+
+		if (companyStaffVerification.isEmpty())
+			return new ErrorDataResult<CompanyStaffVerification>(Messages.companyStaffVerificationNotFound);
+
+		return new SuccessDataResult<CompanyStaffVerification>(companyStaffVerification.get());
+	}
+
+	@Override
 	public Result update(final CompanyStaffVerification companyStaffVerification) {
 		companyStaffVerificationDao.save(companyStaffVerification);
 
@@ -65,14 +76,14 @@ public class CompanyStaffVerificationManager implements CompanyStaffVerification
 	}
 
 	@Override
-	public Result verify(final int id) {
-		final Optional<CompanyStaffVerification> companyStaffVerification = companyStaffVerificationDao.findById(id);
+	public Result verify(final int userId) {
+		final DataResult<CompanyStaffVerification> companyStaffVerification = getByUserId(userId);
 
-		if (companyStaffVerification.isEmpty())
+		if (!companyStaffVerification.isSuccess())
 			return new ErrorResult(Messages.companyStaffVerificationNotFound);
 
-		companyStaffVerification.get().setApproved(true);
-		companyStaffVerificationDao.save(companyStaffVerification.get());
+		companyStaffVerification.getData().setApproved(true);
+		companyStaffVerificationDao.save(companyStaffVerification.getData());
 
 		return new SuccessResult(Messages.companyStaffVerificationVerified);
 	}

@@ -1,5 +1,6 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResul
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.EmailActivationDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.EmailActivation;
+import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.User;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.EmailActivationForVerifyDto;
 
 @Service
@@ -37,15 +39,23 @@ public class EmailActivationManager implements EmailActivationService {
 	}
 
 	@Override
-	public Result createAndSendByMail(final int userId, final String email) {
-		final EmailActivation emailActivation = new EmailActivation(0, userId, "123456789TEST", email, false);
-		// TODO create authToken
-		emailActivationDao.save(emailActivation);
+	public Result createAndSendActivationCodeByMail(final User user, final String... emails) {
 
-		emailService.send(email,
-				Messages.emailActivationVerifyEmailTitle,
-				Messages.emailActivationVerifyEmailBody + "www.localhost:8080/api/emailactivations/verify?authToken="
-						+ emailActivation.getAuthToken() + "&email=" + email);
+		for (final String email : emails) {
+			final EmailActivation emailActivation = EmailActivation.builder()
+					.user(user)
+					.email(email)
+					.activationCode("EmailActivationCodeTEST") // TODO create activationCode
+					.expirationDate(LocalDateTime.now().plusMonths(1))
+					.build();
+			emailActivationDao.save(emailActivation);
+			emailService.send(email,
+					Messages.emailActivationVerifyEmailTitle,
+					String.format("%swww.localhost:8080/api/emailactivations/verify?activationCode=%s&email=%s",
+							Messages.emailActivationVerifyEmailBody,
+							emailActivation.getActivationCode(),
+							email));
+		}
 
 		return new SuccessResult(Messages.emailActivationCreatedAndSent);
 	}
@@ -83,14 +93,14 @@ public class EmailActivationManager implements EmailActivationService {
 
 	@Override
 	public Result verify(final EmailActivationForVerifyDto emailActivationForVerifyDto) {
-		final Optional<EmailActivation> emailActivation = emailActivationDao.findByEmailAndAuthToken(
+		final Optional<EmailActivation> emailActivation = emailActivationDao.findByEmailAndActivationCode(
 				emailActivationForVerifyDto.getEmail(),
-				emailActivationForVerifyDto.getAuthToken());
+				emailActivationForVerifyDto.getActivationCode());
 
 		if (emailActivation.isEmpty())
 			return new ErrorResult(Messages.emailNotVerified);
 
-		emailActivation.get().setApproved(true);
+		emailActivation.get().setActivated(true);
 		emailActivationDao.save(emailActivation.get());
 
 		return new SuccessResult(Messages.emailVerified);
