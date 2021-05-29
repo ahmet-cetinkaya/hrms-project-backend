@@ -8,6 +8,88 @@ urn:tos
 
 **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
+### /api/cities/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«City»»](#dataresult«list«city»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/cities/getbyid
+
+#### GET
+##### Summary
+
+getById
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«City»](#dataresult«city») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/cities/getbyname
+
+#### GET
+##### Summary
+
+getByName
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| name | query | name | No | string |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«City»](#dataresult«city») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/cities/getbynamecontains
+
+#### GET
+##### Summary
+
+getByNameContains
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| name | query | name | No | string |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«City»»](#dataresult«list«city»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/companystaffverifications/verify
 
 #### GET
@@ -19,7 +101,7 @@ verify
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| id | query | id | No | integer |
+| userId | query | userId | Yes | integer |
 
 ##### Responses
 
@@ -41,7 +123,7 @@ verify
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| authToken | query |  | No | string |
+| activationCode | query |  | No | string |
 | email | query |  | No | string |
 
 ##### Responses
@@ -81,6 +163,159 @@ register
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | employerForRegisterDto | body | employerForRegisterDto | Yes | [EmployerForRegisterDto](#employerforregisterdto) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobAdvert | body | jobAdvert | Yes | [JobAdvert](#jobadvert) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobAdvert»»](#dataresult«list«jobadvert»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/getall/forlist/byisactive
+
+#### GET
+##### Summary
+
+getAllByIsActiveForList
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| isActive | query | isActive | Yes | boolean |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobAdvertForListDto»»](#dataresult«list«jobadvertforlistdto»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/getall/forlist/byisactiveandemployercompanyname
+
+#### GET
+##### Summary
+
+getAllByIsActiveAndEmployer_CompanyNameForList
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| companyName | query | companyName | Yes | string |
+| isActive | query | isActive | Yes | boolean |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobAdvertForListDto»»](#dataresult«list«jobadvertforlistdto»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/getall/forlist/byisactiveorderbycreatedatby
+
+#### GET
+##### Summary
+
+getAllByIsActiveOrderByCreatedAtByForList
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| direction | query | direction | Yes | string |
+| isActive | query | isActive | Yes | boolean |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobAdvertForListDto»»](#dataresult«list«jobadvertforlistdto»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobAdvert | body | jobAdvert | Yes | [JobAdvert](#jobadvert) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobadverts/update/disablebyid
+
+#### POST
+##### Summary
+
+disableById
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
 
 ##### Responses
 
@@ -172,11 +407,50 @@ register
 
 ### Models
 
+#### City
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| id | integer |  | No |
+| name | string |  | No |
+
+#### DataResult«City»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [City](#city) |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«City»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [City](#city) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«List«Employer»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [ [Employer](#employer) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«JobAdvertForListDto»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobAdvertForListDto](#jobadvertforlistdto) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«JobAdvert»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobAdvert](#jobadvert) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -200,10 +474,15 @@ register
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
+| active | boolean |  | No |
 | companyName | string |  | No |
 | corporateEmail | string |  | No |
+| createdAt | dateTime |  | No |
+| deleted | boolean |  | No |
+| email | string |  | No |
+| id | integer |  | No |
+| password | string |  | No |
 | phone | string |  | No |
-| userId | integer |  | No |
 | website | string |  | No |
 
 #### EmployerForRegisterDto
@@ -218,10 +497,40 @@ register
 | phone | string |  | No |
 | website | string |  | No |
 
+#### JobAdvert
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| active | boolean |  | No |
+| applicationDeadline | dateTime |  | No |
+| city | [City](#city) |  | No |
+| createdAt | dateTime |  | No |
+| deleted | boolean |  | No |
+| description | string |  | No |
+| employer | [Employer](#employer) |  | No |
+| id | integer |  | No |
+| jobPosition | [JobPosition](#jobposition) |  | No |
+| maxSalary | integer |  | No |
+| minSalary | integer |  | No |
+| numberOfOpenPositions | integer |  | No |
+
+#### JobAdvertForListDto
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| applicationDeadline | dateTime |  | No |
+| companyName | string |  | No |
+| createdAt | dateTime |  | No |
+| numberOfOpenPositions | integer |  | No |
+| title | string |  | No |
+
 #### JobPosition
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
+| active | boolean |  | No |
+| createdAt | dateTime |  | No |
+| deleted | boolean |  | No |
 | id | integer |  | No |
 | title | string |  | No |
 
@@ -229,17 +538,22 @@ register
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| birthDate | dateTime |  | No |
+| active | boolean |  | No |
+| birthDate | date |  | No |
+| createdAt | dateTime |  | No |
+| deleted | boolean |  | No |
+| email | string |  | No |
 | firstName | string |  | No |
+| id | integer |  | No |
 | identityNumber | string |  | No |
 | lastName | string |  | No |
-| userId | integer |  | No |
+| password | string |  | No |
 
 #### JobSeekerForRegisterDto
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| birthDate | dateTime |  | No |
+| birthDate | date |  | No |
 | confirmPassword | string |  | No |
 | email | string |  | No |
 | firstName | string |  | No |
