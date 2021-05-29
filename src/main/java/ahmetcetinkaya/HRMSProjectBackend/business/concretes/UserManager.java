@@ -23,15 +23,9 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.User;
 @Service
 public class UserManager implements UserService {
 	private final UserDao userDao;
-	private final EmailService emailService;
-	private final EmailActivationService emailActivationService;
 
 	@Autowired
-	public UserManager(final UserDao userDao, final EmailService emailService,
-			final EmailActivationService emailActivationService) {
 		this.userDao = userDao;
-		this.emailService = emailService;
-		this.emailActivationService = emailActivationService;
 	}
 
 	@Override
@@ -78,19 +72,6 @@ public class UserManager implements UserService {
 	private Result isNotEmailExist(final String email) {
 		return userDao.findByEmail(email).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.userWithMailAlreadyExits);
-	}
-
-	@Override
-	public Result register(final User user) {
-		final Result businessRulesResult = BusinessRules.run(isNotEmailExist(user.getEmail()));
-		if (!businessRulesResult.isSuccess())
-			return businessRulesResult;
-
-		// TODO Password Hash
-		add(user);
-		emailActivationService.createAndSendByMail(user.getId(), user.getEmail());
-
-		return new SuccessResult(Messages.userRegistered);
 	}
 
 	@Override
