@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmailActivationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerService;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.MernisActivationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.UserService;
@@ -21,7 +22,6 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobSeekerDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeeker;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.MernisActivation;
-import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.User;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobSeekerForRegisterDto;
 
 @Service
@@ -29,13 +29,16 @@ public class JobSeekerManager implements JobSeekerService {
 	private final JobSeekerDao jobSeekerDao;
 	private final UserService userService;
 	private final MernisActivationService mernisActivationService;
+	private final EmailActivationService emailActivationService;
 
 	@Autowired
 	public JobSeekerManager(final JobSeekerDao jobSeekerDao, final UserService userService,
-			final MernisActivationService mernisActivationService) {
+			final MernisActivationService mernisActivationService,
+			final EmailActivationService emailActivationService) {
 		this.jobSeekerDao = jobSeekerDao;
 		this.userService = userService;
 		this.mernisActivationService = mernisActivationService;
+		this.emailActivationService = emailActivationService;
 	}
 
 	@Override
@@ -83,7 +86,8 @@ public class JobSeekerManager implements JobSeekerService {
 		return new SuccessDataResult<JobSeeker>(jobSeeker.get());
 	}
 
-	private Result isNotNationalIdentityExist(final String identityNumber) {
+	@Override
+	public Result isNotNationalIdentityExist(final String identityNumber) {
 		return jobSeekerDao.findByIdentityNumber(identityNumber).isEmpty() ? new SuccessResult()
 				: new ErrorResult(Messages.jobSeekerWithIdentityNumberAlreadyExits);
 	}
@@ -91,6 +95,7 @@ public class JobSeekerManager implements JobSeekerService {
 	@Override
 	public Result register(final JobSeekerForRegisterDto jobSeekerForRegisterDto) {
 		final Result businessRulesResult = BusinessRules.run(
+				userService.isNotEmailExist(jobSeekerForRegisterDto.getEmail()),
 				isNotNationalIdentityExist(jobSeekerForRegisterDto.getIdentityNumber()),
 				arePasswordMatch(jobSeekerForRegisterDto.getPassword(), jobSeekerForRegisterDto.getConfirmPassword()),
 				mernisActivationService.check(new PersonForValidateFromMernisService(
@@ -101,21 +106,18 @@ public class JobSeekerManager implements JobSeekerService {
 		if (!businessRulesResult.isSuccess())
 			return businessRulesResult;
 
-		final User user = new User(0, jobSeekerForRegisterDto.getEmail(), jobSeekerForRegisterDto.getPassword());
-		final Result userRegisterResult = userService.register(user);
-		if (!userRegisterResult.isSuccess())
-			return userRegisterResult;
+		final JobSeeker jobSeeker = JobSeeker.childBuilder()
+				.email(jobSeekerForRegisterDto.getEmail())
+				.password(jobSeekerForRegisterDto.getPassword())
+				.firstName(jobSeekerForRegisterDto.getFirstName())
+				.lastName(jobSeekerForRegisterDto.getLastName())
+				.identityNumber(jobSeekerForRegisterDto.getIdentityNumber())
+				.birthDate(jobSeekerForRegisterDto.getBirthDate())
+				.build();
+		jobSeekerDao.save(jobSeeker);
 
-		final JobSeeker jobSeeker = new JobSeeker(user.getId(),
-				jobSeekerForRegisterDto.getFirstName(),
-				jobSeekerForRegisterDto.getLastName(),
-				jobSeekerForRegisterDto.getIdentityNumber(),
-				jobSeekerForRegisterDto.getBirthDate(),
-				user);
-		add(jobSeeker);
-
-		final MernisActivation mernisActivation = new MernisActivation(0, user.getId(), true);
-		mernisActivationService.add(mernisActivation);
+		emailActivationService.createAndSendActivationCodeByMail(jobSeeker, jobSeeker.getEmail());
+		mernisActivationService.add(MernisActivation.builder().user(jobSeeker).build());
 
 		return new SuccessResult(Messages.jobSeekerAdded);
 	}

@@ -9,5 +9,7 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobSeekerForRegisterDto;
 public interface JobSeekerService extends BaseService<JobSeeker> {
 	DataResult<JobSeeker> getByIdentityNumber(String identityNumber);
 
+	Result isNotNationalIdentityExist(String identityNumber);
+
 	Result register(JobSeekerForRegisterDto jobSeekerForRegisterDto);
 }

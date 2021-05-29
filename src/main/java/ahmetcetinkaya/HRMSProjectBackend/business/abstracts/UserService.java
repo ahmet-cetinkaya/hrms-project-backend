@@ -8,5 +8,5 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.User;
 public interface UserService extends BaseService<User> {
 	DataResult<User> getByEmail(String email);
 
-	Result register(User user);
+	Result isNotEmailExist(final String email);
 }
