@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.CompanyStaffVerificationService;
@@ -21,8 +22,8 @@ public class CompanyStaffVerificationController {
 	}
 
 	@GetMapping("/verify")
-	public ResponseEntity<Result> verify(final int id) {
-		final Result result = companyStaffVerificationService.verify(id);
+	public ResponseEntity<Result> verify(@RequestParam final int userId) {
+		final Result result = companyStaffVerificationService.verify(userId);
 
 		if (!result.isSuccess())
 			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
