@@ -53,4 +53,8 @@ public class Messages {
 	public static String companyStaffVerificationNotFound = "Company Staff Verification not found.";
 	public static String companyStaffVerificationVerified = "User has been verified by company staff.";
 
+	public static String CityAdded = "City has added.";
+	public static String CityUpdated = "City has updated.";
+	public static String CityDeleted = "City has deleted.";
+	public static String CityNotFound = "City not found.";
 }
