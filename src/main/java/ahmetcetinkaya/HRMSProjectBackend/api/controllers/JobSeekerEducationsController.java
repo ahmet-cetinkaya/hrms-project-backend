@@ -21,7 +21,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerEducation;
 
 @RestController
-@RequestMapping("/api/jobseekereducations")
+@RequestMapping("/api/jobseekers/educations")
 public class JobSeekerEducationsController {
 	private JobSeekerEducationService jobSeekerEducationService;
 

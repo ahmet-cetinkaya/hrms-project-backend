@@ -366,7 +366,7 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekereducations/add
+### /api/jobseekers/educations/add
 
 #### POST
 ##### Summary
@@ -389,7 +389,7 @@ add
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekereducations/delete
+### /api/jobseekers/educations/delete
 
 #### DELETE
 ##### Summary
@@ -411,7 +411,7 @@ delete
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 
-### /api/jobseekereducations/getall
+### /api/jobseekers/educations/getall
 
 #### GET
 ##### Summary
@@ -427,7 +427,7 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekereducations/getall/byjobseekerid
+### /api/jobseekers/educations/getall/byjobseekerid
 
 #### GET
 ##### Summary
@@ -449,7 +449,7 @@ getAllByJobSeeker_Id
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekereducations/getall/byjobseekeridorderbygraduationdate
+### /api/jobseekers/educations/getall/byjobseekeridorderbygraduationdate
 
 #### GET
 ##### Summary
@@ -472,7 +472,7 @@ getAllByJobSeeker_IdOrderByGraduationDate
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekereducations/update
+### /api/jobseekers/educations/update
 
 #### POST
 ##### Summary
@@ -495,7 +495,7 @@ update
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekerexperiences/add
+### /api/jobseekers/experiences/add
 
 #### POST
 ##### Summary
@@ -518,7 +518,7 @@ add
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekerexperiences/delete
+### /api/jobseekers/experiences/delete
 
 #### DELETE
 ##### Summary
@@ -540,7 +540,7 @@ delete
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 
-### /api/jobseekerexperiences/getall
+### /api/jobseekers/experiences/getall
 
 #### GET
 ##### Summary
@@ -556,7 +556,7 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekerexperiences/getall/byjobseekerid
+### /api/jobseekers/experiences/getall/byjobseekerid
 
 #### GET
 ##### Summary
@@ -578,7 +578,7 @@ getAllByJobSeeker_Id
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekerexperiences/getall/byjobseekeridorderbyquitdate
+### /api/jobseekers/experiences/getall/byjobseekeridorderbyquitdate
 
 #### GET
 ##### Summary
@@ -601,7 +601,7 @@ getAllByJobSeeker_IdOrderByQuitDate
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekerexperiences/update
+### /api/jobseekers/experiences/update
 
 #### POST
 ##### Summary
@@ -613,112 +613,6 @@ update
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekerlanguages/add
-
-#### POST
-##### Summary
-
-add
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekerlanguages/delete
-
-#### DELETE
-##### Summary
-
-delete
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 204 | No Content |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-
-### /api/jobseekerlanguages/get/byid
-
-#### GET
-##### Summary
-
-getAllByJobSeeker_Id
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| id | query | id | No | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«JobSeekerLanguage»](#dataresult«jobseekerlanguage») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekerlanguages/getall
-
-#### GET
-##### Summary
-
-getAll
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerLanguage»»](#dataresult«list«jobseekerlanguage»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekerlanguages/update
-
-#### POST
-##### Summary
-
-update
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
 
 ##### Responses
 
@@ -742,6 +636,112 @@ getAll
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
 | 200 | OK | [DataResult«List«JobSeeker»»](#dataresult«list«jobseeker»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/languages/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/languages/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/languages/get/byid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerLanguage»](#dataresult«jobseekerlanguage») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/languages/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerLanguage»»](#dataresult«list«jobseekerlanguage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/languages/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |

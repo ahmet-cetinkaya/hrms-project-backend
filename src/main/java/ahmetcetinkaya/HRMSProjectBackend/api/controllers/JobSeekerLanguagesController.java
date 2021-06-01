@@ -19,7 +19,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerLanguage;
 
 @RestController
-@RequestMapping("/api/jobseekerlanguages")
+@RequestMapping("/api/jobseekers/languages")
 public class JobSeekerLanguagesController {
 	private JobSeekerLanguageService jobSeekerLanguageService;
 

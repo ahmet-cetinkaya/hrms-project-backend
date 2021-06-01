@@ -21,7 +21,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerExperience;
 
 @RestController
-@RequestMapping("/api/jobseekerexperiences")
+@RequestMapping("/api/jobseekers/experiences")
 public class JobSeekerExperiencesController {
 	private JobSeekerExperienceService jobSeekerExperienceService;
 
