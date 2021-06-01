@@ -102,6 +102,16 @@ CREATE TABLE IF NOT EXISTS public.job_seeker_experiences
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.job_seeker_languages
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_id integer NOT NULL,
+    language_id character(2) NOT NULL,
+    level smallint NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS public.job_seekers
 (
     user_id integer NOT NULL,
@@ -197,6 +207,18 @@ ALTER TABLE public.job_seeker_experiences
 ALTER TABLE public.job_seeker_experiences
     ADD FOREIGN KEY (job_seeker_id)
     REFERENCES public.job_seekers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_languages
+    ADD FOREIGN KEY (job_seeker_id)
+    REFERENCES public.job_seekers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_languages
+    ADD FOREIGN KEY (language_id)
+    REFERENCES public.languages (id)
     NOT VALID;
 
 
