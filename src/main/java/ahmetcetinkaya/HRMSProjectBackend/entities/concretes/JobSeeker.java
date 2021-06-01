@@ -47,11 +47,11 @@ public class JobSeeker extends User {
 	private LocalDate birthDate;
 
 	@Builder(builderMethodName = "childBuilder")
-	public JobSeeker(@NotBlank @Email @Size(max = 100) final String email,
+	public JobSeeker(final int id, @NotBlank @Email @Size(max = 100) final String email,
 			@NotBlank @Size(max = 100) final String password, @NotBlank @Size(max = 50) final String firstName,
 			@NotBlank @Size(max = 50) final String lastName,
 			@NotBlank @Size(min = 11, max = 11) final String identityNumber, @NotNull @Past final LocalDate birthDate) {
-		super(email, password);
+		super(id, email, password);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.identityNumber = identityNumber;
