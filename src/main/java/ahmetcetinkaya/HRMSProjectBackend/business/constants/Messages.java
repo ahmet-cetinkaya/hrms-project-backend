@@ -67,4 +67,9 @@ public class Messages {
 	public static String JobSeekerEducationUpdated = "Job Seeker Education has updated.";
 	public static String JobSeekerEducationDeleted = "Job Seeker Education has deleted.";
 	public static String JobSeekerEducationNotFound = "Job Seeker Education not found.";
+
+	public static String JobSeekerExperienceAdded = "Job Seeker Experience has added.";
+	public static String JobSeekerExperienceUpdated = "Job Seeker Experience has updated.";
+	public static String JobSeekerExperienceDeleted = "Job Seeker Experience has deleted.";
+	public static String JobSeekerExperienceNotFound = "Job Seeker Experience not found.";
 }
