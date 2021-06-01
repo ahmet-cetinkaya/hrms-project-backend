@@ -495,6 +495,135 @@ update
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekerexperiences/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerexperiences/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekerexperiences/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerExperience»»](#dataresult«list«jobseekerexperience»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerexperiences/getall/byjobseekerid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerId | query | jobSeekerId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerExperience»»](#dataresult«list«jobseekerexperience»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerexperiences/getall/byjobseekeridorderbyquitdate
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_IdOrderByQuitDate
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| direction | query | direction | Yes | string |
+| jobSeekerId | query | jobSeekerId | Yes | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerExperience»»](#dataresult«list«jobseekerexperience»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerexperiences/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/jobseekers/getall
 
 #### GET
@@ -599,6 +728,14 @@ register
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«List«JobSeekerExperience»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerExperience](#jobseekerexperience) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«List«JobSeeker»»
 
 | Name | Type | Description | Required |
@@ -697,6 +834,18 @@ register
 | jobSeeker | [JobSeeker](#jobseeker) |  | No |
 | schoolName | string |  | No |
 | startDate | date |  | No |
+
+#### JobSeekerExperience
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobPosition | [JobPosition](#jobposition) |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| quitDate | date |  | No |
+| startDate | date |  | No |
+| workplaceName | string |  | No |
 
 #### JobSeekerForRegisterDto
 
