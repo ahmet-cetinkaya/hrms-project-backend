@@ -72,4 +72,14 @@ public class Messages {
 	public static String JobSeekerExperienceUpdated = "Job Seeker Experience has updated.";
 	public static String JobSeekerExperienceDeleted = "Job Seeker Experience has deleted.";
 	public static String JobSeekerExperienceNotFound = "Job Seeker Experience not found.";
+
+	public static String LanguageAdded = "Language has added.";
+	public static String LanguageUpdated = "Language has updated.";
+	public static String LanguageDeleted = "Language has deleted.";
+	public static String LanguageNotFound = "Language not found.";
+
+	public static String JobSeekerLanguageAdded = "Job Seeker Language has added.";
+	public static String JobSeekerLanguageUpdated = "Job Seeker Language has updated.";
+	public static String JobSeekerLanguageDeleted = "Job Seeker Language has deleted.";
+	public static String JobSeekerLanguageNotFound = "Job Seeker Language not found.";
 }
