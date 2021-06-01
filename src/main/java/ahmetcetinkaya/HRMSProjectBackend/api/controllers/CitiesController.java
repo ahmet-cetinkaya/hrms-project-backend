@@ -14,11 +14,11 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.City;
 
 @RestController
 @RequestMapping("/api/cities")
-public class CityController {
+public class CitiesController {
 	private CityService cityService;
 
 	@Autowired
-	public CityController(final CityService cityService) {
+	public CitiesController(final CityService cityService) {
 		this.cityService = cityService;
 	}
 
