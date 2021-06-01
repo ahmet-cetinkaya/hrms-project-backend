@@ -624,6 +624,112 @@ update
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekerlanguages/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerlanguages/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekerlanguages/get/byid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerLanguage»](#dataresult«jobseekerlanguage») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerlanguages/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerLanguage»»](#dataresult«list«jobseekerlanguage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekerlanguages/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/jobseekers/getall
 
 #### GET
@@ -718,6 +824,14 @@ getById
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«JobSeekerLanguage»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [JobSeekerLanguage](#jobseekerlanguage) |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«Language»
 
 | Name | Type | Description | Required |
@@ -779,6 +893,14 @@ getById
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [ [JobSeekerExperience](#jobseekerexperience) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«JobSeekerLanguage»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerLanguage](#jobseekerlanguage) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -912,6 +1034,16 @@ getById
 | identityNumber | string |  | No |
 | lastName | string |  | No |
 | password | string |  | No |
+
+#### JobSeekerLanguage
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| language | [Language](#language) |  | No |
+| level | integer |  | No |
 
 #### Language
 
