@@ -663,6 +663,44 @@ register
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/languages/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«Language»»](#dataresult«list«language»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/languages/getbyid
+
+#### GET
+##### Summary
+
+getById
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | Yes | string |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«Language»](#dataresult«language») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### Models
 
 #### City
@@ -677,6 +715,14 @@ register
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [City](#city) |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«Language»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [Language](#language) |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -741,6 +787,14 @@ register
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [ [JobSeeker](#jobseeker) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«Language»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [Language](#language) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -858,6 +912,13 @@ register
 | identityNumber | string |  | No |
 | lastName | string |  | No |
 | password | string |  | No |
+
+#### Language
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| id | string |  | No |
+| name | string |  | No |
 
 #### Result
 
