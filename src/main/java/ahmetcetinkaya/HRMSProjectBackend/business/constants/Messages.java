@@ -82,4 +82,9 @@ public class Messages {
 	public static String JobSeekerLanguageUpdated = "Job Seeker Language has updated.";
 	public static String JobSeekerLanguageDeleted = "Job Seeker Language has deleted.";
 	public static String JobSeekerLanguageNotFound = "Job Seeker Language not found.";
+
+	public static String JobSeekerImageAdded = "Job Seeker Image has added.";
+	public static String JobSeekerImageUpdated = "Job Seeker Image has updated.";
+	public static String JobSeekerImageDeleted = "Job Seeker Image has deleted.";
+	public static String JobSeekerImageNotFound = "Job Seeker Image not found.";
 }
