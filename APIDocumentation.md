@@ -366,6 +366,135 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekereducations/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerEducation | body | jobSeekerEducation | Yes | [JobSeekerEducation](#jobseekereducation) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekereducations/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerEducation | body | jobSeekerEducation | Yes | [JobSeekerEducation](#jobseekereducation) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekereducations/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerEducation»»](#dataresult«list«jobseekereducation»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekereducations/getall/byjobseekerid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerId | query | jobSeekerId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerEducation»»](#dataresult«list«jobseekereducation»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekereducations/getall/byjobseekeridorderbygraduationdate
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_IdOrderByGraduationDate
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| direction | query | direction | Yes | string |
+| jobSeekerId | query | jobSeekerId | Yes | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerEducation»»](#dataresult«list«jobseekereducation»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekereducations/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerEducation | body | jobSeekerEducation | Yes | [JobSeekerEducation](#jobseekereducation) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/jobseekers/getall
 
 #### GET
@@ -462,6 +591,14 @@ register
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«List«JobSeekerEducation»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerEducation](#jobseekereducation) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«List«JobSeeker»»
 
 | Name | Type | Description | Required |
@@ -548,6 +685,18 @@ register
 | identityNumber | string |  | No |
 | lastName | string |  | No |
 | password | string |  | No |
+
+#### JobSeekerEducation
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| departmentName | string |  | No |
+| graduationDate | date |  | No |
+| id | integer |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| schoolName | string |  | No |
+| startDate | date |  | No |
 
 #### JobSeekerForRegisterDto
 
