@@ -112,6 +112,13 @@ CREATE TABLE IF NOT EXISTS public.job_seekers
     PRIMARY KEY (user_id)
 );
 
+CREATE TABLE IF NOT EXISTS public.languages
+(
+    id character(2) NOT NULL,
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS public.mernis_activations
 (
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
