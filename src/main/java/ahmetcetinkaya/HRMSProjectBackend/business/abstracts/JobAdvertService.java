@@ -8,7 +8,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobAdvert;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto;
 
-public interface JobAdvertService extends BaseService<JobAdvert> {
+public interface JobAdvertService extends BaseService<JobAdvert, Integer> {
 	Result disableById(int id);
 
 	DataResult<List<JobAdvertForListDto>> getAllByIsActiveAndEmployer_CompanyNameForList(boolean isActive,

@@ -8,7 +8,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.business.BaseService;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerEducation;
 
-public interface JobSeekerEducationService extends BaseService<JobSeekerEducation> {
+public interface JobSeekerEducationService extends BaseService<JobSeekerEducation, Integer> {
 	DataResult<List<JobSeekerEducation>> getAllByJobSeeker_Id(int jobSeekerId);
 
 	DataResult<List<JobSeekerEducation>> getAllByJobSeeker_IdOrderByGraduationDate(int jobSeekerId,

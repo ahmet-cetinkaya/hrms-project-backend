@@ -86,7 +86,7 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
-	public DataResult<JobAdvert> getById(final int id) {
+	public DataResult<JobAdvert> getById(final Integer id) {
 		final Optional<JobAdvert> jobAdvert = jobAdvertDao.findById(id);
 
 		if (jobAdvert.isEmpty())

@@ -65,7 +65,7 @@ public class JobSeekerEducationManager implements JobSeekerEducationService {
 	}
 
 	@Override
-	public DataResult<JobSeekerEducation> getById(final int id) {
+	public DataResult<JobSeekerEducation> getById(final Integer id) {
 		final Optional<JobSeekerEducation> jobSeekerEducation = jobSeekerEducationDao.findById(id);
 
 		if (jobSeekerEducation.isEmpty())

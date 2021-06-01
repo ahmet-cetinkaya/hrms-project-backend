@@ -75,7 +75,7 @@ public class EmailActivationManager implements EmailActivationService {
 	}
 
 	@Override
-	public DataResult<EmailActivation> getById(final int id) {
+	public DataResult<EmailActivation> getById(final Integer id) {
 		final Optional<EmailActivation> emailActivation = emailActivationDao.findById(id);
 
 		if (emailActivation.isEmpty())

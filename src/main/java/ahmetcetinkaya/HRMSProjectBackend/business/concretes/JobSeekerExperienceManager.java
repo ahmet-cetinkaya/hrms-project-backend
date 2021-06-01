@@ -66,7 +66,7 @@ public class JobSeekerExperienceManager implements JobSeekerExperienceService {
 	}
 
 	@Override
-	public DataResult<JobSeekerExperience> getById(final int id) {
+	public DataResult<JobSeekerExperience> getById(final Integer id) {
 		final Optional<JobSeekerExperience> jobSeekerExperience = jobSeekerExperienceDao.findById(id);
 
 		if (jobSeekerExperience.isEmpty())

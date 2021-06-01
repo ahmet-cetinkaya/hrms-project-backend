@@ -44,8 +44,8 @@ public class CityManager implements CityService {
 	}
 
 	@Override
-	public DataResult<City> getById(final int id) {
-		final Optional<City> city = cityDao.findById((short) id);
+	public DataResult<City> getById(final Short id) {
+		final Optional<City> city = cityDao.findById(id);
 
 		if (city.isEmpty())
 			return new ErrorDataResult<City>(Messages.CityNotFound);

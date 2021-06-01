@@ -53,7 +53,7 @@ public class JobPositionManager implements JobPositionService {
 	}
 
 	@Override
-	public DataResult<JobPosition> getById(final int id) {
+	public DataResult<JobPosition> getById(final Integer id) {
 		final Optional<JobPosition> jobPosition = jobPositionDao.findById(id);
 
 		if (jobPosition.isEmpty())
