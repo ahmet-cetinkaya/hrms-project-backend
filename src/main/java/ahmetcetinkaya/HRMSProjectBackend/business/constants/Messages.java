@@ -62,4 +62,9 @@ public class Messages {
 	public static String JobAdvertUpdated = "Job Advert has updated.";
 	public static String JobAdvertDeleted = "Job Advert has deleted.";
 	public static String JobAdvertNotFound = "Job Advert not found.";
+
+	public static String JobSeekerEducationAdded = "Job Seeker Education has added.";
+	public static String JobSeekerEducationUpdated = "Job Seeker Education has updated.";
+	public static String JobSeekerEducationDeleted = "Job Seeker Education has deleted.";
+	public static String JobSeekerEducationNotFound = "Job Seeker Education not found.";
 }
