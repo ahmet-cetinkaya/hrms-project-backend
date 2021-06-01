@@ -640,6 +640,90 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekers/images/addandsave
+
+#### POST
+##### Summary
+
+addAndSave
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| file | formData | file | Yes | file |
+| jobSeekerId | query | jobSeekerId | Yes | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/images/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerImage | body | jobSeekerImage | Yes | [JobSeekerImage](#jobseekerimage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/images/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerImage»»](#dataresult«list«jobseekerimage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/images/getall/byjobseekerid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerId | query | jobSeekerId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerImage»»](#dataresult«list«jobseekerimage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/jobseekers/languages/add
 
 #### POST
@@ -896,6 +980,14 @@ getById
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«List«JobSeekerImage»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerImage](#jobseekerimage) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«List«JobSeekerLanguage»»
 
 | Name | Type | Description | Required |
@@ -946,6 +1038,36 @@ getById
 | password | string |  | No |
 | phone | string |  | No |
 | website | string |  | No |
+
+#### File
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| absolute | boolean |  | No |
+| absoluteFile | [File](#file) |  | No |
+| absolutePath | string |  | No |
+| canonicalFile | [File](#file) |  | No |
+| canonicalPath | string |  | No |
+| directory | boolean |  | No |
+| executable | boolean |  | No |
+| file | boolean |  | No |
+| freeSpace | long |  | No |
+| hidden | boolean |  | No |
+| lastModified | long |  | No |
+| name | string |  | No |
+| parent | string |  | No |
+| parentFile | [File](#file) |  | No |
+| path | string |  | No |
+| readable | boolean |  | No |
+| totalSpace | long |  | No |
+| usableSpace | long |  | No |
+| writable | boolean |  | No |
+
+#### InputStream
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| InputStream | object |  |  |
 
 #### JobAdvert
 
@@ -1035,6 +1157,15 @@ getById
 | lastName | string |  | No |
 | password | string |  | No |
 
+#### JobSeekerImage
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| url | string |  | No |
+
 #### JobSeekerLanguage
 
 | Name | Type | Description | Required |
@@ -1052,9 +1183,68 @@ getById
 | id | string |  | No |
 | name | string |  | No |
 
+#### Resource
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| description | string |  | No |
+| file | [File](#file) |  | No |
+| filename | string |  | No |
+| inputStream | [InputStream](#inputstream) |  | No |
+| open | boolean |  | No |
+| readable | boolean |  | No |
+| uri | [URI](#uri) |  | No |
+| url | [URL](#url) |  | No |
+
 #### Result
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | message | string |  | No |
 | success | boolean |  | No |
+
+#### URI
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| absolute | boolean |  | No |
+| authority | string |  | No |
+| fragment | string |  | No |
+| host | string |  | No |
+| opaque | boolean |  | No |
+| path | string |  | No |
+| port | integer |  | No |
+| query | string |  | No |
+| rawAuthority | string |  | No |
+| rawFragment | string |  | No |
+| rawPath | string |  | No |
+| rawQuery | string |  | No |
+| rawSchemeSpecificPart | string |  | No |
+| rawUserInfo | string |  | No |
+| scheme | string |  | No |
+| schemeSpecificPart | string |  | No |
+| userInfo | string |  | No |
+
+#### URL
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| authority | string |  | No |
+| content | object |  | No |
+| defaultPort | integer |  | No |
+| deserializedFields | [URLStreamHandler](#urlstreamhandler) |  | No |
+| file | string |  | No |
+| host | string |  | No |
+| path | string |  | No |
+| port | integer |  | No |
+| protocol | string |  | No |
+| query | string |  | No |
+| ref | string |  | No |
+| serializedHashCode | integer |  | No |
+| userInfo | string |  | No |
+
+#### URLStreamHandler
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| URLStreamHandler | object |  |  |
