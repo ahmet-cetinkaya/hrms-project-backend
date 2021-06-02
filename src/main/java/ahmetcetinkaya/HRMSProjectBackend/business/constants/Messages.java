@@ -87,4 +87,9 @@ public class Messages {
 	public static String JobSeekerImageUpdated = "Job Seeker Image has updated.";
 	public static String JobSeekerImageDeleted = "Job Seeker Image has deleted.";
 	public static String JobSeekerImageNotFound = "Job Seeker Image not found.";
+
+	public static String WebSiteAdded = "Web Site has added.";
+	public static String WebSiteUpdated = "Web Site has updated.";
+	public static String WebSiteDeleted = "Web Site has deleted.";
+	public static String WebSiteNotFound = "Web Site not found.";
 }
