@@ -102,4 +102,9 @@ public class Messages {
 	public static String jobSeekerCVSkillUpdated = "Job Seeker CV Skill has updated.";
 	public static String jobSeekerCVSkillDeleted = "Job Seeker CV Skill has deleted.";
 	public static String jobSeekerCVSkillNotFound = "Job Seeker CV Skill not found.";
+
+	public static String jobSeekerCVAdded = "Job Seeker CV has added.";
+	public static String jobSeekerCVUpdated = "Job Seeker CV has updated.";
+	public static String jobSeekerCVDeleted = "Job Seeker CV has deleted.";
+	public static String jobSeekerCVNotFound = "Job Seeker CV not found.";
 }
