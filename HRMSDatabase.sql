@@ -159,6 +159,13 @@ CREATE TABLE IF NOT EXISTS public.users
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.web_sites
+(
+    id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 ALTER TABLE public.company_staff_verifications
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
