@@ -92,4 +92,9 @@ public class Messages {
 	public static String WebSiteUpdated = "Web Site has updated.";
 	public static String WebSiteDeleted = "Web Site has deleted.";
 	public static String WebSiteNotFound = "Web Site not found.";
+
+	public static String JobSeekerWebSiteAdded = "Job Seeker Web Site has added.";
+	public static String JobSeekerWebSiteUpdated = "Job Seeker Web Site has updated.";
+	public static String JobSeekerWebSiteDeleted = "Job Seeker Web Site has deleted.";
+	public static String JobSeekerWebSiteNotFound = "Job Seeker Web Site not found.";
 }
