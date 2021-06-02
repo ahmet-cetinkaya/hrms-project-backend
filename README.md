@@ -31,7 +31,7 @@
 
 ### Models
 
-[![](https://user-images.githubusercontent.com/53148314/120083001-b062e800-c0ce-11eb-9968-2797263b4617.png)](https://user-images.githubusercontent.com/53148314/120083001-b062e800-c0ce-11eb-9968-2797263b4617.png)
+[![](https://user-images.githubusercontent.com/53148314/120496300-1fd62180-c3c6-11eb-82a8-723880348fd3.png)](https://user-images.githubusercontent.com/53148314/120496300-1fd62180-c3c6-11eb-82a8-723880348fd3.png)
 
 ## Usage
 
