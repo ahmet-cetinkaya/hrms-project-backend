@@ -7,10 +7,10 @@ import org.springframework.web.multipart.MultipartFile;
 import ahmetcetinkaya.HRMSProjectBackend.core.business.BaseService;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
-import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerImage;
+import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCVImage;
 
-public interface JobSeekerImageService extends BaseService<JobSeekerImage, Integer> {
-	Result addAndSave(JobSeekerImage jobSeekerImage, MultipartFile file);
+public interface JobSeekerCVImageService extends BaseService<JobSeekerCVImage, Integer> {
+	Result addAndSave(JobSeekerCVImage jobSeekerImage, MultipartFile file);
 
-	DataResult<List<JobSeekerImage>> getAllByJobSeeker_Id(int jobSeekerId);
+	DataResult<List<JobSeekerCVImage>> getAllByJobSeekerCV_Id(int jobSeekerCVId);
 }

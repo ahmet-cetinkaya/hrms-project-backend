@@ -29,14 +29,14 @@ public class WebSiteManager implements WebSiteService {
 	public Result add(final WebSite webSite) {
 		webSiteDao.save(webSite);
 
-		return new SuccessResult(Messages.WebSiteAdded);
+		return new SuccessResult(Messages.webSiteAdded);
 	}
 
 	@Override
 	public Result delete(final WebSite webSite) {
 		webSiteDao.delete(webSite);
 
-		return new SuccessResult(Messages.WebSiteDeleted);
+		return new SuccessResult(Messages.webSiteDeleted);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class WebSiteManager implements WebSiteService {
 		final Optional<WebSite> webSite = webSiteDao.findById(id);
 
 		if (webSite.isEmpty())
-			return new ErrorDataResult<WebSite>(Messages.WebSiteNotFound);
+			return new ErrorDataResult<WebSite>(Messages.webSiteNotFound);
 
 		return new SuccessDataResult<WebSite>(webSite.get());
 	}
@@ -61,7 +61,7 @@ public class WebSiteManager implements WebSiteService {
 		final Optional<WebSite> webSite = webSiteDao.findByName(name);
 
 		if (webSite.isEmpty())
-			return new ErrorDataResult<WebSite>(Messages.WebSiteNotFound);
+			return new ErrorDataResult<WebSite>(Messages.webSiteNotFound);
 
 		return new SuccessDataResult<WebSite>(webSite.get());
 	}
@@ -70,6 +70,6 @@ public class WebSiteManager implements WebSiteService {
 	public Result update(final WebSite webSite) {
 		webSiteDao.save(webSite);
 
-		return new SuccessResult(Messages.WebSiteUpdated);
+		return new SuccessResult(Messages.webSiteUpdated);
 	}
 }

@@ -366,7 +366,7 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseeker/websites/add
+### /api/jobseekers/cvs/educations/add
 
 #### POST
 ##### Summary
@@ -377,7 +377,7 @@ add
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerWebSite | body | jobSeekerWebSite | Yes | [JobSeekerWebSite](#jobseekerwebsite) |
+| jobSeekerCVEducation | body | jobSeekerCVEducation | Yes | [JobSeekerCVEducation](#jobseekercveducation) |
 
 ##### Responses
 
@@ -389,7 +389,7 @@ add
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseeker/websites/delete
+### /api/jobseekers/cvs/educations/delete
 
 #### DELETE
 ##### Summary
@@ -400,7 +400,7 @@ delete
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerWebSite | body | jobSeekerWebSite | Yes | [JobSeekerWebSite](#jobseekerwebsite) |
+| jobSeekerCVEducation | body | jobSeekerCVEducation | Yes | [JobSeekerCVEducation](#jobseekercveducation) |
 
 ##### Responses
 
@@ -411,7 +411,7 @@ delete
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 
-### /api/jobseeker/websites/getall
+### /api/jobseekers/cvs/educations/getall
 
 #### GET
 ##### Summary
@@ -422,163 +422,57 @@ getAll
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerWebSite»»](#dataresult«list«jobseekerwebsite»») |
+| 200 | OK | [DataResult«List«JobSeekerCVEducation»»](#dataresult«list«jobseekercveducation»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseeker/websites/getall/byjobseekerid
+### /api/jobseekers/cvs/educations/getall/byjobseekercvid
 
 #### GET
 ##### Summary
 
-getAllByJobSeeker_Id
+getAllByJobSeekerCV_Id
 
 ##### Parameters
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerId | query | jobSeekerId | No | integer |
+| jobSeekerCVId | query | jobSeekerCVId | No | integer |
 
 ##### Responses
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerWebSite»»](#dataresult«list«jobseekerwebsite»») |
+| 200 | OK | [DataResult«List«JobSeekerCVEducation»»](#dataresult«list«jobseekercveducation»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseeker/websites/update
-
-#### POST
-##### Summary
-
-update
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerWebSite | body | jobSeekerWebSite | Yes | [JobSeekerWebSite](#jobseekerwebsite) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/educations/add
-
-#### POST
-##### Summary
-
-add
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerEducation | body | jobSeekerEducation | Yes | [JobSeekerEducation](#jobseekereducation) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/educations/delete
-
-#### DELETE
-##### Summary
-
-delete
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerEducation | body | jobSeekerEducation | Yes | [JobSeekerEducation](#jobseekereducation) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 204 | No Content |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-
-### /api/jobseekers/educations/getall
+### /api/jobseekers/cvs/educations/getall/byjobseekercvidorderbygraduationdate
 
 #### GET
 ##### Summary
 
-getAll
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerEducation»»](#dataresult«list«jobseekereducation»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/educations/getall/byjobseekerid
-
-#### GET
-##### Summary
-
-getAllByJobSeeker_Id
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerId | query | jobSeekerId | No | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerEducation»»](#dataresult«list«jobseekereducation»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/educations/getall/byjobseekeridorderbygraduationdate
-
-#### GET
-##### Summary
-
-getAllByJobSeeker_IdOrderByGraduationDate
+getAllByJobSeekerCV_IdOrderByGraduationDate
 
 ##### Parameters
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | direction | query | direction | Yes | string |
-| jobSeekerId | query | jobSeekerId | Yes | integer |
+| jobSeekerCVId | query | jobSeekerCVId | Yes | integer |
 
 ##### Responses
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerEducation»»](#dataresult«list«jobseekereducation»») |
+| 200 | OK | [DataResult«List«JobSeekerCVEducation»»](#dataresult«list«jobseekercveducation»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/educations/update
+### /api/jobseekers/cvs/educations/update
 
 #### POST
 ##### Summary
@@ -589,7 +483,7 @@ update
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerEducation | body | jobSeekerEducation | Yes | [JobSeekerEducation](#jobseekereducation) |
+| jobSeekerCVEducation | body | jobSeekerCVEducation | Yes | [JobSeekerCVEducation](#jobseekercveducation) |
 
 ##### Responses
 
@@ -601,7 +495,7 @@ update
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/experiences/add
+### /api/jobseekers/cvs/experiences/add
 
 #### POST
 ##### Summary
@@ -612,7 +506,7 @@ add
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
+| jobSeekerCVExperience | body | jobSeekerCVExperience | Yes | [JobSeekerCVExperience](#jobseekercvexperience) |
 
 ##### Responses
 
@@ -624,7 +518,7 @@ add
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/experiences/delete
+### /api/jobseekers/cvs/experiences/delete
 
 #### DELETE
 ##### Summary
@@ -635,7 +529,7 @@ delete
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
+| jobSeekerCVExperience | body | jobSeekerCVExperience | Yes | [JobSeekerCVExperience](#jobseekercvexperience) |
 
 ##### Responses
 
@@ -646,7 +540,7 @@ delete
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 
-### /api/jobseekers/experiences/getall
+### /api/jobseekers/cvs/experiences/getall
 
 #### GET
 ##### Summary
@@ -657,57 +551,57 @@ getAll
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerExperience»»](#dataresult«list«jobseekerexperience»») |
+| 200 | OK | [DataResult«List«JobSeekerCVExperience»»](#dataresult«list«jobseekercvexperience»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/experiences/getall/byjobseekerid
+### /api/jobseekers/cvs/experiences/getall/byjobseekercvid
 
 #### GET
 ##### Summary
 
-getAllByJobSeeker_Id
+getAllByJobSeekerCV_Id
 
 ##### Parameters
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerId | query | jobSeekerId | No | integer |
+| jobSeekerCVId | query | jobSeekerCVId | No | integer |
 
 ##### Responses
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerExperience»»](#dataresult«list«jobseekerexperience»») |
+| 200 | OK | [DataResult«List«JobSeekerCVExperience»»](#dataresult«list«jobseekercvexperience»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/experiences/getall/byjobseekeridorderbyquitdate
+### /api/jobseekers/cvs/experiences/getall/byjobseekercvidorderbyquitdate
 
 #### GET
 ##### Summary
 
-getAllByJobSeeker_IdOrderByQuitDate
+getAllByJobSeekerCV_IdOrderByQuitDate
 
 ##### Parameters
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | direction | query | direction | Yes | string |
-| jobSeekerId | query | jobSeekerId | Yes | integer |
+| jobSeekerCVId | query | jobSeekerCVId | Yes | integer |
 
 ##### Responses
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerExperience»»](#dataresult«list«jobseekerexperience»») |
+| 200 | OK | [DataResult«List«JobSeekerCVExperience»»](#dataresult«list«jobseekercvexperience»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/experiences/update
+### /api/jobseekers/cvs/experiences/update
 
 #### POST
 ##### Summary
@@ -718,7 +612,453 @@ update
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerExperience | body | jobSeekerExperience | Yes | [JobSeekerExperience](#jobseekerexperience) |
+| jobSeekerCVExperience | body | jobSeekerCVExperience | Yes | [JobSeekerCVExperience](#jobseekercvexperience) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/images/addandsave
+
+#### POST
+##### Summary
+
+addAndSave
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| file | formData | file | Yes | file |
+| jobSeekerCVId | query | jobSeekerCVId | Yes | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/images/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVImage | body | jobSeekerCVImage | Yes | [JobSeekerCVImage](#jobseekercvimage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/cvs/images/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVImage»»](#dataresult«list«jobseekercvimage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/images/getall/byjobseekercvid
+
+#### GET
+##### Summary
+
+getAllByJobSeekerCV_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVId | query | jobSeekerCVId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVImage»»](#dataresult«list«jobseekercvimage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/languages/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVLanguage | body | jobSeekerCVLanguage | Yes | [JobSeekerCVLanguage](#jobseekercvlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/languages/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVLanguage | body | jobSeekerCVLanguage | Yes | [JobSeekerCVLanguage](#jobseekercvlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/cvs/languages/get/byid
+
+#### GET
+##### Summary
+
+getbyid
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerCVLanguage»](#dataresult«jobseekercvlanguage») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/languages/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVLanguage»»](#dataresult«list«jobseekercvlanguage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/languages/getall/byjobseekercvid
+
+#### GET
+##### Summary
+
+getAllByJobSeekerCV_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVId | query | jobSeekerCVId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVLanguage»»](#dataresult«list«jobseekercvlanguage»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/languages/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVLanguage | body | jobSeekerCVLanguage | Yes | [JobSeekerCVLanguage](#jobseekercvlanguage) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/skills/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVSkill | body | jobSeekerCVSkill | Yes | [JobSeekerCVSkill](#jobseekercvskill) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/skills/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVSkill | body | jobSeekerCVSkill | Yes | [JobSeekerCVSkill](#jobseekercvskill) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/cvs/skills/get/byid
+
+#### GET
+##### Summary
+
+getById
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerCVSkill»](#dataresult«jobseekercvskill») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/skills/get/byjobseekercvid
+
+#### GET
+##### Summary
+
+getAllByJobSeekerCV_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVId | query | jobSeekerCVId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVSkill»»](#dataresult«list«jobseekercvskill»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/skills/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVSkill»»](#dataresult«list«jobseekercvskill»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/skills/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVSkill | body | jobSeekerCVSkill | Yes | [JobSeekerCVSkill](#jobseekercvskill) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/websites/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVWebSite | body | jobSeekerCVWebSite | Yes | [JobSeekerCVWebSite](#jobseekercvwebsite) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/websites/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVWebSite | body | jobSeekerCVWebSite | Yes | [JobSeekerCVWebSite](#jobseekercvwebsite) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/cvs/websites/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVWebSite»»](#dataresult«list«jobseekercvwebsite»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/websites/getall/byjobseekercvid
+
+#### GET
+##### Summary
+
+getAllByJobSeekerCV_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVId | query | jobSeekerCVId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCVWebSite»»](#dataresult«list«jobseekercvwebsite»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/websites/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCVWebSite | body | jobSeekerCVWebSite | Yes | [JobSeekerCVWebSite](#jobseekercvwebsite) |
 
 ##### Responses
 
@@ -746,196 +1086,6 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
-### /api/jobseekers/images/addandsave
-
-#### POST
-##### Summary
-
-addAndSave
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| file | formData | file | Yes | file |
-| jobSeekerId | query | jobSeekerId | Yes | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/images/delete
-
-#### DELETE
-##### Summary
-
-delete
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerImage | body | jobSeekerImage | Yes | [JobSeekerImage](#jobseekerimage) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 204 | No Content |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-
-### /api/jobseekers/images/getall
-
-#### GET
-##### Summary
-
-getAll
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerImage»»](#dataresult«list«jobseekerimage»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/images/getall/byjobseekerid
-
-#### GET
-##### Summary
-
-getAllByJobSeeker_Id
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerId | query | jobSeekerId | No | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerImage»»](#dataresult«list«jobseekerimage»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/languages/add
-
-#### POST
-##### Summary
-
-add
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/languages/delete
-
-#### DELETE
-##### Summary
-
-delete
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 204 | No Content |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-
-### /api/jobseekers/languages/get/byid
-
-#### GET
-##### Summary
-
-getAllByJobSeeker_Id
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| id | query | id | No | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«JobSeekerLanguage»](#dataresult«jobseekerlanguage») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/languages/getall
-
-#### GET
-##### Summary
-
-getAll
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerLanguage»»](#dataresult«list«jobseekerlanguage»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/languages/update
-
-#### POST
-##### Summary
-
-update
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerLanguage | body | jobSeekerLanguage | Yes | [JobSeekerLanguage](#jobseekerlanguage) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
 ### /api/jobseekers/register
 
 #### POST
@@ -948,134 +1098,6 @@ register
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | jobSeekerForRegisterDto | body | jobSeekerForRegisterDto | Yes | [JobSeekerForRegisterDto](#jobseekerforregisterdto) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/skills/add
-
-#### POST
-##### Summary
-
-add
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerSkill | body | jobSeekerSkill | Yes | [JobSeekerSkill](#jobseekerskill) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 201 | Created |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/skills/delete
-
-#### DELETE
-##### Summary
-
-delete
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerSkill | body | jobSeekerSkill | Yes | [JobSeekerSkill](#jobseekerskill) |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [Result](#result) |
-| 204 | No Content |  |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-
-### /api/jobseekers/skills/get/byid
-
-#### GET
-##### Summary
-
-getById
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| id | query | id | No | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«JobSeekerSkill»](#dataresult«jobseekerskill») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/skills/get/byjobseekerid
-
-#### GET
-##### Summary
-
-getAllByJobSeeker_Id
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerId | query | jobSeekerId | No | integer |
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerSkill»»](#dataresult«list«jobseekerskill»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/skills/getall
-
-#### GET
-##### Summary
-
-getAll
-
-##### Responses
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [DataResult«List«JobSeekerSkill»»](#dataresult«list«jobseekerskill»») |
-| 401 | Unauthorized |  |
-| 403 | Forbidden |  |
-| 404 | Not Found |  |
-
-### /api/jobseekers/skills/update
-
-#### POST
-##### Summary
-
-update
-
-##### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| jobSeekerSkill | body | jobSeekerSkill | Yes | [JobSeekerSkill](#jobseekerskill) |
 
 ##### Responses
 
@@ -1248,19 +1270,19 @@ update
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«JobSeekerLanguage»
+#### DataResult«JobSeekerCVLanguage»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [JobSeekerLanguage](#jobseekerlanguage) |  | No |
+| data | [JobSeekerCVLanguage](#jobseekercvlanguage) |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«JobSeekerSkill»
+#### DataResult«JobSeekerCVSkill»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [JobSeekerSkill](#jobseekerskill) |  | No |
+| data | [JobSeekerCVSkill](#jobseekercvskill) |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -1312,51 +1334,51 @@ update
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«List«JobSeekerEducation»»
+#### DataResult«List«JobSeekerCVEducation»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [ [JobSeekerEducation](#jobseekereducation) ] |  | No |
+| data | [ [JobSeekerCVEducation](#jobseekercveducation) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«List«JobSeekerExperience»»
+#### DataResult«List«JobSeekerCVExperience»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [ [JobSeekerExperience](#jobseekerexperience) ] |  | No |
+| data | [ [JobSeekerCVExperience](#jobseekercvexperience) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«List«JobSeekerImage»»
+#### DataResult«List«JobSeekerCVImage»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [ [JobSeekerImage](#jobseekerimage) ] |  | No |
+| data | [ [JobSeekerCVImage](#jobseekercvimage) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«List«JobSeekerLanguage»»
+#### DataResult«List«JobSeekerCVLanguage»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [ [JobSeekerLanguage](#jobseekerlanguage) ] |  | No |
+| data | [ [JobSeekerCVLanguage](#jobseekercvlanguage) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«List«JobSeekerSkill»»
+#### DataResult«List«JobSeekerCVSkill»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [ [JobSeekerSkill](#jobseekerskill) ] |  | No |
+| data | [ [JobSeekerCVSkill](#jobseekercvskill) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
-#### DataResult«List«JobSeekerWebSite»»
+#### DataResult«List«JobSeekerCVWebSite»»
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| data | [ [JobSeekerWebSite](#jobseekerwebsite) ] |  | No |
+| data | [ [JobSeekerCVWebSite](#jobseekercvwebsite) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -1501,7 +1523,22 @@ update
 | lastName | string |  | No |
 | password | string |  | No |
 
-#### JobSeekerEducation
+#### JobSeekerCV
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| coverLetter | string |  | No |
+| createdAt | dateTime |  | No |
+| educations | [ [JobSeekerCVEducation](#jobseekercveducation) ] |  | No |
+| experiences | [ [JobSeekerCVExperience](#jobseekercvexperience) ] |  | No |
+| id | integer |  | No |
+| images | [ [JobSeekerCVImage](#jobseekercvimage) ] |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| languages | [ [JobSeekerCVLanguage](#jobseekercvlanguage) ] |  | No |
+| skills | [ [JobSeekerCVSkill](#jobseekercvskill) ] |  | No |
+| webSites | [ [JobSeekerCVWebSite](#jobseekercvwebsite) ] |  | No |
+
+#### JobSeekerCVEducation
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
@@ -1509,21 +1546,59 @@ update
 | departmentName | string |  | No |
 | graduationDate | date |  | No |
 | id | integer |  | No |
-| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| jobSeekerCV | [JobSeekerCV](#jobseekercv) |  | No |
 | schoolName | string |  | No |
 | startDate | date |  | No |
 
-#### JobSeekerExperience
+#### JobSeekerCVExperience
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | createdAt | dateTime |  | No |
 | id | integer |  | No |
 | jobPosition | [JobPosition](#jobposition) |  | No |
-| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| jobSeekerCV | [JobSeekerCV](#jobseekercv) |  | No |
 | quitDate | date |  | No |
 | startDate | date |  | No |
 | workplaceName | string |  | No |
+
+#### JobSeekerCVImage
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeekerCV | [JobSeekerCV](#jobseekercv) |  | No |
+| url | string |  | No |
+
+#### JobSeekerCVLanguage
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeekerCV | [JobSeekerCV](#jobseekercv) |  | No |
+| language | [Language](#language) |  | No |
+| level | integer |  | No |
+
+#### JobSeekerCVSkill
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeekerCV | [JobSeekerCV](#jobseekercv) |  | No |
+| name | string |  | No |
+
+#### JobSeekerCVWebSite
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| address | string |  | No |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeekerCV | [JobSeekerCV](#jobseekercv) |  | No |
+| webSite | [WebSite](#website) |  | No |
 
 #### JobSeekerForRegisterDto
 
@@ -1536,44 +1611,6 @@ update
 | identityNumber | string |  | No |
 | lastName | string |  | No |
 | password | string |  | No |
-
-#### JobSeekerImage
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| createdAt | dateTime |  | No |
-| id | integer |  | No |
-| jobSeeker | [JobSeeker](#jobseeker) |  | No |
-| url | string |  | No |
-
-#### JobSeekerLanguage
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| createdAt | dateTime |  | No |
-| id | integer |  | No |
-| jobSeeker | [JobSeeker](#jobseeker) |  | No |
-| language | [Language](#language) |  | No |
-| level | integer |  | No |
-
-#### JobSeekerSkill
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| createdAt | dateTime |  | No |
-| id | integer |  | No |
-| jobSeeker | [JobSeeker](#jobseeker) |  | No |
-| name | string |  | No |
-
-#### JobSeekerWebSite
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| address | string |  | No |
-| createdAt | dateTime |  | No |
-| id | integer |  | No |
-| jobSeeker | [JobSeeker](#jobseeker) |  | No |
-| webSite | [WebSite](#website) |  | No |
 
 #### Language
 

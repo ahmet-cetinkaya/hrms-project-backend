@@ -1,5 +1,6 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -11,10 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,22 +30,36 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Entity
-@Table(name = "job_seeker_skills")
-public class JobSeekerSkill {
+@Table(name = "job_seeker_cv_educations")
+public class JobSeekerCVEducation {
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@NotNull
-	@JoinColumn(name = "job_seeker_id")
+	@JoinColumn(name = "job_seeker_cv_id")
 	@ManyToOne
-	private JobSeeker jobSeeker;
+	private JobSeekerCV jobSeekerCV;
 
 	@NotBlank
-	@Length(max = 100)
-	@Column(name = "name")
-	private String name;
+	@Size(max = 100)
+	@Column(name = "school_name")
+	private String schoolName;
+
+	@NotBlank
+	@Size(max = 100)
+	@Column(name = "department_name")
+	private String departmentName;
+
+	@NotNull
+	@PastOrPresent
+	@Column(name = "start_date")
+	private LocalDate startDate;
+
+	@PastOrPresent
+	@Column(name = "graduation_date")
+	private LocalDate graduationDate;
 
 	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")

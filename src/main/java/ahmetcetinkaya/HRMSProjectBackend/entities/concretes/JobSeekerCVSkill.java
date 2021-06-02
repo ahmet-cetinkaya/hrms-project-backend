@@ -10,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.Length;
 
 import com.sun.istack.NotNull;
 
@@ -29,27 +30,22 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Entity
-@Table(name = "job_seeker_languages")
-public class JobSeekerLanguage {
+@Table(name = "job_seeker_cv_skills")
+public class JobSeekerCVSkill {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
 
 	@NotNull
-	@JoinColumn(name = "job_seeker_id")
+	@JoinColumn(name = "job_seeker_cv_id")
 	@ManyToOne
-	private JobSeeker jobSeeker;
+	private JobSeekerCV jobSeekerCV;
 
-	@NotNull
-	@JoinColumn(name = "language_id")
-	@ManyToOne
-	private Language language;
-
-	@NotNull
-	@Range(min = 1, max = 6)
-	@Column(name = "level")
-	private short level;
+	@NotBlank
+	@Length(max = 100)
+	@Column(name = "name")
+	private String name;
 
 	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")

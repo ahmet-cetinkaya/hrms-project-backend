@@ -31,17 +31,17 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Entity
-@Table(name = "job_seeker_experiences")
-public class JobSeekerExperience {
+@Table(name = "job_seeker_cv_experiences")
+public class JobSeekerCVExperience {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id;
 
 	@NotNull
-	@JoinColumn(name = "job_seeker_id")
+	@JoinColumn(name = "job_seeker_cv_id")
 	@ManyToOne
-	private JobSeeker jobSeeker;
+	private JobSeekerCV jobSeekerCV;
 
 	@NotNull
 	@JoinColumn(name = "job_position_id")

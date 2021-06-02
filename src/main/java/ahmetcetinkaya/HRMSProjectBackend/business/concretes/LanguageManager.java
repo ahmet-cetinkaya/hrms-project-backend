@@ -29,14 +29,14 @@ public class LanguageManager implements LanguageService {
 	public Result add(final Language language) {
 		languageDao.save(language);
 
-		return new SuccessResult(Messages.LanguageAdded);
+		return new SuccessResult(Messages.languageAdded);
 	}
 
 	@Override
 	public Result delete(final Language language) {
 		languageDao.delete(language);
 
-		return new SuccessResult(Messages.LanguageDeleted);
+		return new SuccessResult(Messages.languageDeleted);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class LanguageManager implements LanguageService {
 		final Optional<Language> language = languageDao.findById(id);
 
 		if (language.isEmpty())
-			return new ErrorDataResult<Language>(Messages.LanguageNotFound);
+			return new ErrorDataResult<Language>(Messages.languageNotFound);
 
 		return new SuccessDataResult<Language>(language.get());
 	}
@@ -60,7 +60,7 @@ public class LanguageManager implements LanguageService {
 	public Result update(final Language language) {
 		languageDao.save(language);
 
-		return new SuccessResult(Messages.LanguageUpdated);
+		return new SuccessResult(Messages.languageUpdated);
 	}
 
 }

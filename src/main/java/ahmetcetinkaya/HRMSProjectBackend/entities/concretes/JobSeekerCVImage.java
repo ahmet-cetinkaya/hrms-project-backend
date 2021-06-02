@@ -27,16 +27,17 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
-@Table(name = "job_seeker_images")
-public class JobSeekerImage {
+@Table(name = "job_seeker_cv_images")
+public class JobSeekerCVImage {
 	@Column(name = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JoinColumn(name = "jobSeeker_id")
-	@ManyToOne()
-	private JobSeeker jobSeeker;
+	@NotNull
+	@JoinColumn(name = "job_seeker_cv_id")
+	@ManyToOne
+	private JobSeekerCV jobSeekerCV;
 
 	@NotBlank
 	@Column(name = "url")
