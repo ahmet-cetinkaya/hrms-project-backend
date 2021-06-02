@@ -140,6 +140,15 @@ CREATE TABLE IF NOT EXISTS public.job_seeker_cv_web_sites
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.job_seeker_cvs
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_id integer NOT NULL,
+    cover_letter character varying(300) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS public.job_seekers
 (
     user_id integer NOT NULL,
@@ -278,6 +287,12 @@ ALTER TABLE public.job_seeker_cv_web_sites
 ALTER TABLE public.job_seeker_cv_web_sites
     ADD FOREIGN KEY (web_site_id)
     REFERENCES public.web_sites (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cvs
+    ADD FOREIGN KEY (job_seeker_id)
+    REFERENCES public.job_seekers (user_id)
     NOT VALID;
 
 
