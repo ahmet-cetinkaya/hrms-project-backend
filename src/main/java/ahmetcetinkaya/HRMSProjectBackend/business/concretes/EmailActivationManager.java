@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmailActivationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
+import ahmetcetinkaya.HRMSProjectBackend.core.entities.User;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.email.EmailService;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
@@ -18,7 +19,6 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResul
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.EmailActivationDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.EmailActivation;
-import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.User;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.EmailActivationForVerifyDto;
 
 @Service

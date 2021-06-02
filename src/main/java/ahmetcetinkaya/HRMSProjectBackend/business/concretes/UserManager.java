@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.UserService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
+import ahmetcetinkaya.HRMSProjectBackend.core.entities.User;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorResult;
@@ -15,7 +16,6 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.UserDao;
-import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.User;
 
 @Service
 public class UserManager implements UserService {

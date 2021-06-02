@@ -1,4 +1,4 @@
-package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
+package ahmetcetinkaya.HRMSProjectBackend.core.entities;
 
 import java.time.LocalDateTime;
 

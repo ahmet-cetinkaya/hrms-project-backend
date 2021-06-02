@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
+import ahmetcetinkaya.HRMSProjectBackend.core.entities.User;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
