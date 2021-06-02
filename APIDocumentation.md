@@ -959,6 +959,134 @@ register
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekers/skills/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerSkill | body | jobSeekerSkill | Yes | [JobSeekerSkill](#jobseekerskill) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/skills/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerSkill | body | jobSeekerSkill | Yes | [JobSeekerSkill](#jobseekerskill) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseekers/skills/get/byid
+
+#### GET
+##### Summary
+
+getById
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerSkill»](#dataresult«jobseekerskill») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/skills/get/byjobseekerid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerId | query | jobSeekerId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerSkill»»](#dataresult«list«jobseekerskill»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/skills/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerSkill»»](#dataresult«list«jobseekerskill»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/skills/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerSkill | body | jobSeekerSkill | Yes | [JobSeekerSkill](#jobseekerskill) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/languages/getall
 
 #### GET
@@ -1128,6 +1256,14 @@ update
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«JobSeekerSkill»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [JobSeekerSkill](#jobseekerskill) |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«Language»
 
 | Name | Type | Description | Required |
@@ -1205,6 +1341,14 @@ update
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [ [JobSeekerLanguage](#jobseekerlanguage) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«JobSeekerSkill»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerSkill](#jobseekerskill) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -1411,6 +1555,15 @@ update
 | jobSeeker | [JobSeeker](#jobseeker) |  | No |
 | language | [Language](#language) |  | No |
 | level | integer |  | No |
+
+#### JobSeekerSkill
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| name | string |  | No |
 
 #### JobSeekerWebSite
 
