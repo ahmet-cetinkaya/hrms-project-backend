@@ -366,6 +366,112 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseeker/websites/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerWebSite | body | jobSeekerWebSite | Yes | [JobSeekerWebSite](#jobseekerwebsite) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseeker/websites/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerWebSite | body | jobSeekerWebSite | Yes | [JobSeekerWebSite](#jobseekerwebsite) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/jobseeker/websites/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerWebSite»»](#dataresult«list«jobseekerwebsite»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseeker/websites/getall/byjobseekerid
+
+#### GET
+##### Summary
+
+getAllByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerId | query | jobSeekerId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerWebSite»»](#dataresult«list«jobseekerwebsite»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseeker/websites/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerWebSite | body | jobSeekerWebSite | Yes | [JobSeekerWebSite](#jobseekerwebsite) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/jobseekers/educations/add
 
 #### POST
@@ -1102,6 +1208,14 @@ update
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«List«JobSeekerWebSite»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerWebSite](#jobseekerwebsite) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«List«JobSeeker»»
 
 | Name | Type | Description | Required |
@@ -1297,6 +1411,16 @@ update
 | jobSeeker | [JobSeeker](#jobseeker) |  | No |
 | language | [Language](#language) |  | No |
 | level | integer |  | No |
+
+#### JobSeekerWebSite
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| address | string |  | No |
+| createdAt | dateTime |  | No |
+| id | integer |  | No |
+| jobSeeker | [JobSeeker](#jobseeker) |  | No |
+| webSite | [WebSite](#website) |  | No |
 
 #### Language
 
