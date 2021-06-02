@@ -97,4 +97,9 @@ public class Messages {
 	public static String JobSeekerWebSiteUpdated = "Job Seeker Web Site has updated.";
 	public static String JobSeekerWebSiteDeleted = "Job Seeker Web Site has deleted.";
 	public static String JobSeekerWebSiteNotFound = "Job Seeker Web Site not found.";
+
+	public static String JobSeekerSkillAdded = "Job Seeker Skill has added.";
+	public static String JobSeekerSkillUpdated = "Job Seeker Skill has updated.";
+	public static String JobSeekerSkillDeleted = "Job Seeker Skill has deleted.";
+	public static String JobSeekerSkillNotFound = "Job Seeker Skill not found.";
 }
