@@ -891,6 +891,112 @@ getById
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/websites/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| webSite | body | webSite | Yes | [WebSite](#website) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/websites/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| webSite | body | webSite | Yes | [WebSite](#website) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
+### /api/websites/get/byname
+
+#### GET
+##### Summary
+
+getByName
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| name | query | name | No | string |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«WebSite»](#dataresult«website») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/websites/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«WebSite»»](#dataresult«list«website»») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/websites/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| webSite | body | webSite | Yes | [WebSite](#website) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### Models
 
 #### City
@@ -1009,6 +1115,22 @@ getById
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [ [Language](#language) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«WebSite»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [WebSite](#website) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«WebSite»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [WebSite](#website) |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -1248,3 +1370,10 @@ getById
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | URLStreamHandler | object |  |  |
+
+#### WebSite
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| id | integer |  | No |
+| name | string |  | No |
