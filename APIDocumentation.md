@@ -366,6 +366,51 @@ getAll
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekers/cvs/add
+
+#### POST
+##### Summary
+
+add
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCV | body | jobSeekerCV | Yes | [JobSeekerCV](#jobseekercv) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/delete
+
+#### DELETE
+##### Summary
+
+delete
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCV | body | jobSeekerCV | Yes | [JobSeekerCV](#jobseekercv) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 204 | No Content |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+
 ### /api/jobseekers/cvs/educations/add
 
 #### POST
@@ -620,6 +665,66 @@ update
 | ---- | ----------- | ------ |
 | 200 | OK | [Result](#result) |
 | 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/get/byid
+
+#### GET
+##### Summary
+
+getById
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | query | id | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerCV»](#dataresult«jobseekercv») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/get/byjobseekerid
+
+#### GET
+##### Summary
+
+getByJobSeeker_Id
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerId | query | jobSeekerId | No | integer |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«JobSeekerCV»](#dataresult«jobseekercv») |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
+### /api/jobseekers/cvs/getall
+
+#### GET
+##### Summary
+
+getAll
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [DataResult«List«JobSeekerCV»»](#dataresult«list«jobseekercv»») |
 | 401 | Unauthorized |  |
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
@@ -964,6 +1069,29 @@ update
 | 403 | Forbidden |  |
 | 404 | Not Found |  |
 
+### /api/jobseekers/cvs/update
+
+#### POST
+##### Summary
+
+update
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| jobSeekerCV | body | jobSeekerCV | Yes | [JobSeekerCV](#jobseekercv) |
+
+##### Responses
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Result](#result) |
+| 201 | Created |  |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/jobseekers/cvs/websites/add
 
 #### POST
@@ -1286,6 +1414,14 @@ update
 | message | string |  | No |
 | success | boolean |  | No |
 
+#### DataResult«JobSeekerCV»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [JobSeekerCV](#jobseekercv) |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
 #### DataResult«Language»
 
 | Name | Type | Description | Required |
@@ -1379,6 +1515,14 @@ update
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | data | [ [JobSeekerCVWebSite](#jobseekercvwebsite) ] |  | No |
+| message | string |  | No |
+| success | boolean |  | No |
+
+#### DataResult«List«JobSeekerCV»»
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| data | [ [JobSeekerCV](#jobseekercv) ] |  | No |
 | message | string |  | No |
 | success | boolean |  | No |
 
@@ -1529,14 +1673,8 @@ update
 | ---- | ---- | ----------- | -------- |
 | coverLetter | string |  | No |
 | createdAt | dateTime |  | No |
-| educations | [ [JobSeekerCVEducation](#jobseekercveducation) ] |  | No |
-| experiences | [ [JobSeekerCVExperience](#jobseekercvexperience) ] |  | No |
 | id | integer |  | No |
-| images | [ [JobSeekerCVImage](#jobseekercvimage) ] |  | No |
 | jobSeeker | [JobSeeker](#jobseeker) |  | No |
-| languages | [ [JobSeekerCVLanguage](#jobseekercvlanguage) ] |  | No |
-| skills | [ [JobSeekerCVSkill](#jobseekercvskill) ] |  | No |
-| webSites | [ [JobSeekerCVWebSite](#jobseekercvwebsite) ] |  | No |
 
 #### JobSeekerCVEducation
 
