@@ -28,13 +28,13 @@ public class CityManager implements CityService {
 	@Override
 	public Result add(final City city) {
 		cityDao.save(city);
-		return new SuccessResult(Messages.CityAdded);
+		return new SuccessResult(Messages.cityAdded);
 	}
 
 	@Override
 	public Result delete(final City city) {
 		cityDao.delete(city);
-		return new SuccessResult(Messages.CityDeleted);
+		return new SuccessResult(Messages.cityDeleted);
 	}
 
 	@Override
@@ -44,11 +44,11 @@ public class CityManager implements CityService {
 	}
 
 	@Override
-	public DataResult<City> getById(final int id) {
-		final Optional<City> city = cityDao.findById((short) id);
+	public DataResult<City> getById(final Short id) {
+		final Optional<City> city = cityDao.findById(id);
 
 		if (city.isEmpty())
-			return new ErrorDataResult<City>(Messages.CityNotFound);
+			return new ErrorDataResult<City>(Messages.cityNotFound);
 
 		return new SuccessDataResult<City>(city.get());
 	}
@@ -58,7 +58,7 @@ public class CityManager implements CityService {
 		final Optional<City> city = cityDao.findByName(name);
 
 		if (city.isEmpty())
-			return new ErrorDataResult<City>(Messages.CityNotFound);
+			return new ErrorDataResult<City>(Messages.cityNotFound);
 
 		return new SuccessDataResult<City>(city.get());
 	}
@@ -73,7 +73,7 @@ public class CityManager implements CityService {
 	@Override
 	public Result update(final City city) {
 		cityDao.save(city);
-		return new SuccessResult(Messages.CityUpdated);
+		return new SuccessResult(Messages.cityUpdated);
 	}
 
 }

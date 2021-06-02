@@ -13,11 +13,11 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 
 @RestController
 @RequestMapping("/api/companystaffverifications")
-public class CompanyStaffVerificationController {
+public class CompanyStaffVerificationsController {
 	private final CompanyStaffVerificationService companyStaffVerificationService;
 
 	@Autowired
-	public CompanyStaffVerificationController(final CompanyStaffVerificationService companyStaffVerificationService) {
+	public CompanyStaffVerificationsController(final CompanyStaffVerificationService companyStaffVerificationService) {
 		this.companyStaffVerificationService = companyStaffVerificationService;
 	}
 

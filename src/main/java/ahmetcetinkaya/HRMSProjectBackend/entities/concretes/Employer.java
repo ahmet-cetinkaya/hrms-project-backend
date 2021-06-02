@@ -44,11 +44,11 @@ public class Employer extends User {
 	private String phone;
 
 	@Builder(builderMethodName = "childBuilder")
-	public Employer(@NotBlank @Email @Size(max = 100) final String email,
+	public Employer(final int id, @NotBlank @Email @Size(max = 100) final String email,
 			@NotBlank @Size(max = 100) final String password, @NotBlank @Size(max = 100) final String companyName,
 			@NotBlank @Size(max = 100) final String website, @NotBlank @Size(max = 100) final String corporateEmail,
 			@NotBlank @Size(max = 15) final String phone) {
-		super(email, password);
+		super(id, email, password);
 		this.companyName = companyName;
 		this.website = website;
 		this.corporateEmail = corporateEmail;

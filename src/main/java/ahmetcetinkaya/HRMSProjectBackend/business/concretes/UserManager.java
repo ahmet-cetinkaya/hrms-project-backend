@@ -58,7 +58,7 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public DataResult<User> getById(final int id) {
+	public DataResult<User> getById(final Integer id) {
 		final Optional<User> user = userDao.findById(id);
 
 		if (user.isEmpty())

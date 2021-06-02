@@ -48,7 +48,7 @@ public class CompanyStaffVerificationManager implements CompanyStaffVerification
 	}
 
 	@Override
-	public DataResult<CompanyStaffVerification> getById(final int id) {
+	public DataResult<CompanyStaffVerification> getById(final Integer id) {
 		final Optional<CompanyStaffVerification> companyStaffVerification = companyStaffVerificationDao.findById(id);
 
 		if (companyStaffVerification.isEmpty())

@@ -63,7 +63,7 @@ public class EmployerManager implements EmployerService {
 	}
 
 	@Override
-	public DataResult<Employer> getById(final int id) {
+	public DataResult<Employer> getById(final Integer id) {
 		final Optional<Employer> employer = employerDao.findById(id);
 
 		if (employer.isEmpty())

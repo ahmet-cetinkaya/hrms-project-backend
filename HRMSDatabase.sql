@@ -78,6 +78,77 @@ CREATE TABLE IF NOT EXISTS public.job_positions
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.job_seeker_cv_educations
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_cv_id integer NOT NULL,
+    school_name character varying(100) NOT NULL,
+    department_name character varying(100) NOT NULL,
+    start_date date NOT NULL,
+    graduation_date date,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seeker_cv_experiences
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_cv_id integer NOT NULL,
+    job_position_id integer NOT NULL,
+    workplace_name character varying(100) NOT NULL,
+    start_date date NOT NULL,
+    quit_date date,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seeker_cv_images
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_cv_id integer NOT NULL,
+    url character varying NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seeker_cv_languages
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_cv_id integer NOT NULL,
+    language_id character(2) NOT NULL,
+    level smallint NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seeker_cv_skills
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_cv_id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seeker_cv_web_sites
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_cv_id integer NOT NULL,
+    web_site_id smallint NOT NULL,
+    address character varying(200) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seeker_cvs
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_id integer NOT NULL,
+    cover_letter character varying(300) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS public.job_seekers
 (
     user_id integer NOT NULL,
@@ -86,6 +157,13 @@ CREATE TABLE IF NOT EXISTS public.job_seekers
     identity_number character(11) NOT NULL,
     birth_date date NOT NULL,
     PRIMARY KEY (user_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.languages
+(
+    id character(2) NOT NULL,
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.mernis_activations
@@ -106,6 +184,13 @@ CREATE TABLE IF NOT EXISTS public.users
     created_at timestamp with time zone NOT NULL,
     is_active boolean NOT NULL,
     is_deleted boolean NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.web_sites
+(
+    id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
+    name character varying(50) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -148,6 +233,66 @@ ALTER TABLE public.job_adverts
 ALTER TABLE public.job_adverts
     ADD FOREIGN KEY (job_position_id)
     REFERENCES public.job_positions (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_educations
+    ADD FOREIGN KEY (job_seeker_cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_experiences
+    ADD FOREIGN KEY (job_position_id)
+    REFERENCES public.job_positions (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_experiences
+    ADD FOREIGN KEY (job_seeker_cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_images
+    ADD FOREIGN KEY (job_seeker_cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_languages
+    ADD FOREIGN KEY (job_seeker_cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_languages
+    ADD FOREIGN KEY (language_id)
+    REFERENCES public.languages (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_skills
+    ADD FOREIGN KEY (job_seeker_cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_web_sites
+    ADD FOREIGN KEY (job_seeker_cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cv_web_sites
+    ADD FOREIGN KEY (web_site_id)
+    REFERENCES public.web_sites (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seeker_cvs
+    ADD FOREIGN KEY (job_seeker_id)
+    REFERENCES public.job_seekers (user_id)
     NOT VALID;
 
 

@@ -54,7 +54,7 @@ public class MernisActivationManager implements MernisActivationService {
 	}
 
 	@Override
-	public DataResult<MernisActivation> getById(final int id) {
+	public DataResult<MernisActivation> getById(final Integer id) {
 		final Optional<MernisActivation> mernisActivation = mernisActivationDao.findById(id);
 
 		if (mernisActivation.isEmpty())

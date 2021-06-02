@@ -58,8 +58,9 @@ public class User {
 	private boolean isDeleted = false;
 
 	@Builder
-	public User(@NotBlank @Email @Size(max = 100) final String email,
+	public User(final int id, @NotBlank @Email @Size(max = 100) final String email,
 			@NotBlank @Size(max = 100) final String password) {
+		this.id = id;
 		this.email = email;
 		this.password = password;
 	}
