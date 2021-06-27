@@ -1,27 +1,14 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -29,39 +16,40 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobSeekerCV"})
 @Entity
 @Table(name = "job_seeker_cv_educations")
 public class JobSeekerCVEducation {
-	@Column(name = "id")
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @NotNull
+    @Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
-	@NotNull
-	@JoinColumn(name = "job_seeker_cv_id")
-	@ManyToOne
-	private JobSeekerCV jobSeekerCV;
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@NotBlank
-	@Size(max = 100)
-	@Column(name = "school_name")
-	private String schoolName;
+    @NotNull
+    @JoinColumn(name = "job_seeker_cv_id")
+    @ManyToOne
+    private JobSeekerCV jobSeekerCV;
 
-	@NotBlank
-	@Size(max = 100)
-	@Column(name = "department_name")
-	private String departmentName;
+    @NotBlank
+    @Size(max = 100)
+    @Column(name = "school_name")
+    private String schoolName;
 
-	@NotNull
-	@PastOrPresent
-	@Column(name = "start_date")
-	private LocalDate startDate;
+    @NotBlank
+    @Size(max = 100)
+    @Column(name = "department_name")
+    private String departmentName;
 
-	@PastOrPresent
-	@Column(name = "graduation_date")
-	private LocalDate graduationDate;
+    @NotNull
+    @PastOrPresent
+    @Column(name = "start_date")
+    private LocalDate startDate;
 
-	@NotNull
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private final LocalDateTime createdAt = LocalDateTime.now();
+    @PastOrPresent
+    @Column(name = "graduation_date")
+    private LocalDate graduationDate;
 }

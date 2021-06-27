@@ -7,7 +7,7 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.EmailActivation;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.EmailActivationForVerifyDto;
 
 public interface EmailActivationService extends BaseService<EmailActivation, Integer> {
-	Result createAndSendActivationCodeByMail(User user, String... emails);
+    Result createAndSendActivationCodeByMail(User user, String... emails);
 
-	Result verify(EmailActivationForVerifyDto emailActivationForVerifyDto);
+    Result verify(EmailActivationForVerifyDto emailActivationForVerifyDto);
 }

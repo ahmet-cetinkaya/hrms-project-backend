@@ -1,27 +1,12 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import java.time.LocalDateTime;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 @Data
 @NoArgsConstructor
@@ -29,30 +14,31 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobSeekerCV"})
 @Entity
 @Table(name = "job_seeker_cv_web_sites")
 public class JobSeekerCVWebSite {
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	private int id;
+    @NotNull
+    @Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
-	@NotNull
-	@JoinColumn(name = "job_seeker_cv_id")
-	@ManyToOne
-	private JobSeekerCV jobSeekerCV;
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@NotNull
-	@JoinColumn(name = "web_site_id")
-	@ManyToOne
-	private WebSite webSite;
+    @NotNull
+    @JoinColumn(name = "job_seeker_cv_id")
+    @ManyToOne
+    private JobSeekerCV jobSeekerCV;
 
-	@NotBlank
-	@Length(max = 200)
-	@Column(name = "address")
-	private String address;
+    @NotNull
+    @JoinColumn(name = "web_site_id")
+    @ManyToOne
+    private WebSite webSite;
 
-	@NotNull
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private final LocalDateTime createdAt = LocalDateTime.now();
+    @NotBlank
+    @Length(max = 200)
+    @Column(name = "address")
+    private String address;
 }

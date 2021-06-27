@@ -1,26 +1,11 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.Range;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import java.time.LocalDateTime;
+import javax.persistence.*;
+import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 @Data
 @NoArgsConstructor
@@ -28,30 +13,31 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobSeekerCV"})
 @Entity
 @Table(name = "job_seeker_cv_languages")
 public class JobSeekerCVLanguage {
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	private int id;
+    @NotNull
+    @Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
-	@NotNull
-	@JoinColumn(name = "job_seeker_cv_id")
-	@ManyToOne
-	private JobSeekerCV jobSeekerCV;
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@NotNull
-	@JoinColumn(name = "language_id")
-	@ManyToOne
-	private Language language;
+    @NotNull
+    @JoinColumn(name = "job_seeker_cv_id")
+    @ManyToOne
+    private JobSeekerCV jobSeekerCV;
 
-	@NotNull
-	@Range(min = 1, max = 6)
-	@Column(name = "level")
-	private short level;
+    @NotNull
+    @JoinColumn(name = "language_id")
+    @ManyToOne
+    private Language language;
 
-	@NotNull
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private final LocalDateTime createdAt = LocalDateTime.now();
+    @NotNull
+    @Range(min = 1, max = 6)
+    @Column(name = "level")
+    private short level;
 }

@@ -6,7 +6,7 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.Employer;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.EmployerForRegisterDto;
 
 public interface EmployerService extends BaseService<Employer, Integer> {
-	Result isNotCorporateEmailExist(final String corporateEmail);
+    Result isNotCorporateEmailExist(final String corporateEmail);
 
-	Result register(EmployerForRegisterDto employerForRegister);
+    Result register(EmployerForRegisterDto employerForRegister);
 }
