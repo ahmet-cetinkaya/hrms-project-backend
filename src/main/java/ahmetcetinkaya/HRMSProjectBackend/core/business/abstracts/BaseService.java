@@ -1,4 +1,4 @@
-package ahmetcetinkaya.HRMSProjectBackend.core.business;
+package ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts;
 
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
