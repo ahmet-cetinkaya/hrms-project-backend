@@ -23,7 +23,7 @@ public class JobAdvertsController extends BaseController<JobAdvertService, JobAd
         this.jobAdvertService = jobAdvertService;
     }
 
-    @PutMapping("/verify/byId")
+    @PutMapping("/verify/byid")
     public ResponseEntity<Result> verifyById(final int id) {
         final Result result = jobAdvertService.verifyById(id);
 
