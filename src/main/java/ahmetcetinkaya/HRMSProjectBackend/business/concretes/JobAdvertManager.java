@@ -34,7 +34,7 @@ public class JobAdvertManager extends BaseManager<JobAdvertDao, JobAdvert, Integ
 
         jobAdvert.get().setActive(true);
 
-        return update(jobAdvert.get());
+        return super.update(jobAdvert.get());
     }
 
     @Override
