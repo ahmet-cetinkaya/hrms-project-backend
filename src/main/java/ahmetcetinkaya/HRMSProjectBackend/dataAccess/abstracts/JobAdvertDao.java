@@ -8,9 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
+    List<JobAdvert> findAllByIsActive(boolean isActive);
+
     @Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(e.companyName,p.title,j.numberOfOpenPositions,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p WHERE j.isActive=:isActive AND e.companyName=:companyName")
-    List<JobAdvertForListDto> findAllByIsActiveAndEmployer_CompanyNameForList(@Param("isActive") boolean isActive,
-                                                                              @Param("companyName") String companyName);
+    List<JobAdvertForListDto> findAllByIsActiveAndEmployer_CompanyNameForList(@Param("isActive") boolean isActive, @Param("companyName") String companyName);
 
     @Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(e.companyName,p.title,j.numberOfOpenPositions,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p WHERE j.isActive=:isActive")
     List<JobAdvertForListDto> findAllByIsActiveForList(@Param("isActive") boolean isActive);

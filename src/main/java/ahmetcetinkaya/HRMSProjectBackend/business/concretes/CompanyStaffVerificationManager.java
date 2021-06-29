@@ -2,52 +2,22 @@ package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.CompanyStaffVerificationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.CompanyStaffVerificationDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.CompanyStaffVerification;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyStaffVerificationManager implements CompanyStaffVerificationService {
+public class CompanyStaffVerificationManager extends BaseManager<CompanyStaffVerificationDao, CompanyStaffVerification, Integer> implements CompanyStaffVerificationService {
     private final CompanyStaffVerificationDao companyStaffVerificationDao;
 
     @Autowired
     public CompanyStaffVerificationManager(final CompanyStaffVerificationDao companyStaffVerificationDao) {
+        super(companyStaffVerificationDao, "Company staff verification");
         this.companyStaffVerificationDao = companyStaffVerificationDao;
-    }
-
-    @Override
-    public Result add(final CompanyStaffVerification companyStaffVerification) {
-        companyStaffVerificationDao.save(companyStaffVerification);
-
-        return new SuccessResult(Messages.companyStaffVerificationAdded);
-    }
-
-    @Override
-    public Result delete(final CompanyStaffVerification companyStaffVerification) {
-        companyStaffVerificationDao.delete(companyStaffVerification);
-
-        return new SuccessResult(Messages.companyStaffVerificationDeleted);
-    }
-
-    @Override
-    public DataResult<List<CompanyStaffVerification>> getAll() {
-        final List<CompanyStaffVerification> companyStaffVerifications = companyStaffVerificationDao.findAll();
-
-        return new SuccessDataResult<List<CompanyStaffVerification>>(companyStaffVerifications);
-    }
-
-    @Override
-    public DataResult<CompanyStaffVerification> getById(final Integer id) {
-        final Optional<CompanyStaffVerification> companyStaffVerification = companyStaffVerificationDao.findById(id);
-
-        if (companyStaffVerification.isEmpty())
-            return new ErrorDataResult<CompanyStaffVerification>(Messages.companyStaffVerificationNotFound);
-
-        return new SuccessDataResult<CompanyStaffVerification>(companyStaffVerification.get());
     }
 
     @Override
@@ -59,13 +29,6 @@ public class CompanyStaffVerificationManager implements CompanyStaffVerification
             return new ErrorDataResult<CompanyStaffVerification>(Messages.companyStaffVerificationNotFound);
 
         return new SuccessDataResult<CompanyStaffVerification>(companyStaffVerification.get());
-    }
-
-    @Override
-    public Result update(final CompanyStaffVerification companyStaffVerification) {
-        companyStaffVerificationDao.save(companyStaffVerification);
-
-        return new SuccessResult(Messages.companyStaffVerificationUpdated);
     }
 
     @Override

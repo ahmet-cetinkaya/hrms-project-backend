@@ -1,32 +1,28 @@
 package ahmetcetinkaya.HRMSProjectBackend.api.controllers;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerService;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.api.abstracts.BaseController;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeeker;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobSeekerForRegisterDto;
-import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/jobseekers")
-public class JobSeekersController {
+public class JobSeekersController extends BaseController<JobSeekerService, JobSeeker, Integer> {
     private final JobSeekerService jobSeekerService;
 
     @Autowired
     public JobSeekersController(final JobSeekerService jobSeekerService) {
+        super(jobSeekerService);
         this.jobSeekerService = jobSeekerService;
-    }
-
-    @GetMapping("/getall")
-    public ResponseEntity<DataResult<List<JobSeeker>>> getAll() {
-        final DataResult<List<JobSeeker>> result = jobSeekerService.getAll();
-
-        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/register")

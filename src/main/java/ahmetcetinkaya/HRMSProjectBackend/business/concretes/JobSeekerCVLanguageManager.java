@@ -1,44 +1,25 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerCVLanguageService;
-import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobSeekerCVLanguageDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCVLanguage;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobSeekerCVLanguageManager implements JobSeekerCVLanguageService {
+public class JobSeekerCVLanguageManager extends BaseManager<JobSeekerCVLanguageDao, JobSeekerCVLanguage, Integer> implements JobSeekerCVLanguageService {
     private final JobSeekerCVLanguageDao jobSeekerCVLanguageDao;
 
     @Autowired
     public JobSeekerCVLanguageManager(final JobSeekerCVLanguageDao jobSeekerCVLanguageDao) {
+        super(jobSeekerCVLanguageDao, "Job seeker CV language");
         this.jobSeekerCVLanguageDao = jobSeekerCVLanguageDao;
     }
 
-    @Override
-    public Result add(final JobSeekerCVLanguage jobSeekerCVLanguage) {
-        jobSeekerCVLanguageDao.save(jobSeekerCVLanguage);
-
-        return new SuccessResult(Messages.jobSeekerCVLanguageAdded);
-    }
-
-    @Override
-    public Result delete(final JobSeekerCVLanguage jobSeekerCVLanguage) {
-        jobSeekerCVLanguageDao.delete(jobSeekerCVLanguage);
-
-        return new SuccessResult(Messages.jobSeekerCVLanguageDeleted);
-    }
-
-    @Override
-    public DataResult<List<JobSeekerCVLanguage>> getAll() {
-        final List<JobSeekerCVLanguage> jobSeekerCVLanguages = jobSeekerCVLanguageDao.findAll();
-
-        return new SuccessDataResult<List<JobSeekerCVLanguage>>(jobSeekerCVLanguages);
-    }
 
     @Override
     public DataResult<List<JobSeekerCVLanguage>> getAllByJobSeekerCV_Id(final int jobSeekerCVId) {
@@ -46,23 +27,6 @@ public class JobSeekerCVLanguageManager implements JobSeekerCVLanguageService {
                 .findAllByJobSeekerCV_Id(jobSeekerCVId);
 
         return new SuccessDataResult<List<JobSeekerCVLanguage>>(jobSeekerCVLanguages);
-    }
-
-    @Override
-    public DataResult<JobSeekerCVLanguage> getById(final Integer id) {
-        final Optional<JobSeekerCVLanguage> jobSeekerCVLanguage = jobSeekerCVLanguageDao.findById(id);
-
-        if (jobSeekerCVLanguage.isEmpty())
-            return new ErrorDataResult<JobSeekerCVLanguage>(Messages.jobSeekerCVLanguageNotFound);
-
-        return new SuccessDataResult<JobSeekerCVLanguage>(jobSeekerCVLanguage.get());
-    }
-
-    @Override
-    public Result update(final JobSeekerCVLanguage jobSeekerCVLanguage) {
-        jobSeekerCVLanguageDao.save(jobSeekerCVLanguage);
-
-        return new SuccessResult(Messages.jobSeekerCVLanguageUpdated);
     }
 
 }

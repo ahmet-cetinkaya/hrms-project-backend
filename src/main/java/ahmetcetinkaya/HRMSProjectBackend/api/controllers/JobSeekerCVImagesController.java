@@ -1,6 +1,7 @@
 package ahmetcetinkaya.HRMSProjectBackend.api.controllers;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerCVImageService;
+import ahmetcetinkaya.HRMSProjectBackend.core.api.abstracts.BaseController;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCV;
@@ -13,11 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/jobseekers/cvs/images")
-public class JobSeekerCVImagesController {
+public class JobSeekerCVImagesController extends BaseController<JobSeekerCVImageService, JobSeekerCVImage, Integer> {
     private final JobSeekerCVImageService jobSeekerCVImageService;
 
     @Autowired
     public JobSeekerCVImagesController(final JobSeekerCVImageService jobSeekerCVImageService) {
+        super(jobSeekerCVImageService);
         this.jobSeekerCVImageService = jobSeekerCVImageService;
     }
 
@@ -31,21 +33,7 @@ public class JobSeekerCVImagesController {
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Result> delete(@RequestBody final JobSeekerCVImage jobSeekerCVImage) {
-        final Result result = jobSeekerCVImageService.delete(jobSeekerCVImage);
-
-        return ResponseEntity.ok(result);
-    }
-
-    @GetMapping("/getall")
-    public ResponseEntity<DataResult<List<JobSeekerCVImage>>> getAll() {
-        final DataResult<List<JobSeekerCVImage>> result = jobSeekerCVImageService.getAll();
-
-        return ResponseEntity.ok(result);
-    }
-
-    @GetMapping("/getall/byjobseekercvid")
+    @GetMapping("/byjobseekercvid")
     public ResponseEntity<DataResult<List<JobSeekerCVImage>>> getAllByJobSeekerCV_Id(final int jobSeekerCVId) {
         final DataResult<List<JobSeekerCVImage>> result = jobSeekerCVImageService.getAllByJobSeekerCV_Id(jobSeekerCVId);
 

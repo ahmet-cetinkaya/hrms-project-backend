@@ -38,6 +38,14 @@ public class JobAdvert {
     @ManyToOne()
     private City city;
 
+    @JoinColumn(name = "working_type_id")
+    @ManyToOne
+    private WorkingType workingType;
+
+    @JoinColumn(name = "working_time_id")
+    @ManyToOne
+    private WorkingTime workingTime;
+
     @NotBlank
     @Column(name = "description")
     private String description;
@@ -59,7 +67,7 @@ public class JobAdvert {
     private LocalDateTime applicationDeadline;
 
     @Column(name = "is_active", columnDefinition = "boolean default true")
-    private boolean isActive = true;
+    private boolean isActive = false;
 
     @Column(name = "is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted = false;

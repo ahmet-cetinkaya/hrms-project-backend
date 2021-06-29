@@ -1,43 +1,23 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerCVSkillService;
-import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobSeekerCVSkillDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCVSkill;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobSeekerCVSkillManager implements JobSeekerCVSkillService {
+public class JobSeekerCVSkillManager extends BaseManager<JobSeekerCVSkillDao, JobSeekerCVSkill, Integer> implements JobSeekerCVSkillService {
     private final JobSeekerCVSkillDao jobSeekerCVSkillDao;
 
     @Autowired
     public JobSeekerCVSkillManager(final JobSeekerCVSkillDao jobSeekerCVSkillDao) {
+        super(jobSeekerCVSkillDao, "Job seeker CV skill");
         this.jobSeekerCVSkillDao = jobSeekerCVSkillDao;
-    }
-
-    @Override
-    public Result add(final JobSeekerCVSkill jobSeekerCVSkill) {
-        jobSeekerCVSkillDao.save(jobSeekerCVSkill);
-
-        return new SuccessResult(Messages.jobSeekerCVSkillAdded);
-    }
-
-    @Override
-    public Result delete(final JobSeekerCVSkill jobSeekerCVSkill) {
-        jobSeekerCVSkillDao.delete(jobSeekerCVSkill);
-
-        return new SuccessResult(Messages.jobSeekerCVSkillDeleted);
-    }
-
-    @Override
-    public DataResult<List<JobSeekerCVSkill>> getAll() {
-        final List<JobSeekerCVSkill> jobSeekerCVSkills = jobSeekerCVSkillDao.findAll();
-
-        return new SuccessDataResult<List<JobSeekerCVSkill>>(jobSeekerCVSkills);
     }
 
     @Override
@@ -45,23 +25,6 @@ public class JobSeekerCVSkillManager implements JobSeekerCVSkillService {
         final List<JobSeekerCVSkill> jobSeekerCVSkills = jobSeekerCVSkillDao.findAllByJobSeekerCV_Id(jobSeekerCVId);
 
         return new SuccessDataResult<List<JobSeekerCVSkill>>(jobSeekerCVSkills);
-    }
-
-    @Override
-    public DataResult<JobSeekerCVSkill> getById(final Integer id) {
-        final Optional<JobSeekerCVSkill> jobSeekerCVSkill = jobSeekerCVSkillDao.findById(id);
-
-        if (jobSeekerCVSkill.isEmpty())
-            return new ErrorDataResult<JobSeekerCVSkill>(Messages.jobSeekerCVSkillNotFound);
-
-        return new SuccessDataResult<JobSeekerCVSkill>(jobSeekerCVSkill.get());
-    }
-
-    @Override
-    public Result update(final JobSeekerCVSkill jobSeekerCVSkill) {
-        jobSeekerCVSkillDao.save(jobSeekerCVSkill);
-
-        return new SuccessResult(Messages.jobSeekerCVSkillUpdated);
     }
 
 }

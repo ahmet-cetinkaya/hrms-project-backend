@@ -2,7 +2,11 @@ package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobAdvertService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobAdvertDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobAdvert;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto;
@@ -12,43 +16,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobAdvertManager implements JobAdvertService {
+public class JobAdvertManager extends BaseManager<JobAdvertDao, JobAdvert, Integer> implements JobAdvertService {
     private final JobAdvertDao jobAdvertDao;
 
     @Autowired
     public JobAdvertManager(final JobAdvertDao jobAdvertDao) {
+        super(jobAdvertDao, "Job advert");
         this.jobAdvertDao = jobAdvertDao;
     }
 
     @Override
-    public Result add(final JobAdvert jobAdvert) {
-        jobAdvertDao.save(jobAdvert);
-
-        return new SuccessResult(Messages.jobAdvertAdded);
-    }
-
-    @Override
-    public Result delete(final JobAdvert jobAdvert) {
-        jobAdvertDao.delete(jobAdvert);
-
-        return new SuccessResult(Messages.jobAdvertDeleted);
-    }
-
-    @Override
-    public Result disableById(final int id) {
+    public Result verifyById(final int id) {
         final Optional<JobAdvert> jobAdvert = jobAdvertDao.findById(id);
 
         if (jobAdvert.isEmpty())
             return new ErrorDataResult<JobAdvert>(Messages.jobAdvertNotFound);
 
-        jobAdvert.get().setActive(false);
+        jobAdvert.get().setActive(true);
 
         return update(jobAdvert.get());
     }
 
     @Override
-    public DataResult<List<JobAdvert>> getAll() {
-        final List<JobAdvert> jobAdverts = jobAdvertDao.findAll();
+    public DataResult<List<JobAdvert>> getAllByIsActive(final boolean isActive) {
+        final List<JobAdvert> jobAdverts = jobAdvertDao.findAllByIsActive(isActive);
 
         return new SuccessDataResult<List<JobAdvert>>(jobAdverts);
     }
@@ -78,22 +69,4 @@ public class JobAdvertManager implements JobAdvertService {
 
         return new SuccessDataResult<List<JobAdvertForListDto>>(jobAdvertForListDtos);
     }
-
-    @Override
-    public DataResult<JobAdvert> getById(final Integer id) {
-        final Optional<JobAdvert> jobAdvert = jobAdvertDao.findById(id);
-
-        if (jobAdvert.isEmpty())
-            return new ErrorDataResult<JobAdvert>(Messages.jobAdvertNotFound);
-
-        return new SuccessDataResult<JobAdvert>(jobAdvert.get());
-    }
-
-    @Override
-    public Result update(final JobAdvert jobAdvert) {
-        jobAdvertDao.save(jobAdvert);
-
-        return new SuccessResult(Messages.jobAdvertUpdated);
-    }
-
 }

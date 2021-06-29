@@ -2,6 +2,7 @@ package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.LanguageService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.LanguageDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.Language;
@@ -11,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LanguageManager implements LanguageService {
+public class LanguageManager extends BaseManager<LanguageDao, Language, String> implements LanguageService {
     private final LanguageDao languageDao;
 
     @Autowired
     public LanguageManager(final LanguageDao languageDao) {
+        super(languageDao, "Language");
         this.languageDao = languageDao;
     }
 

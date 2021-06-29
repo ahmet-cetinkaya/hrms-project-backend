@@ -6,19 +6,19 @@ import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.MernisActivationServ
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.UserService;
 import ahmetcetinkaya.HRMSProjectBackend.business.adapters.mernisService.PersonForValidateFromMernisService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.business.BusinessRules;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobSeekerDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeeker;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.MernisActivation;
 import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobSeekerForRegisterDto;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobSeekerManager implements JobSeekerService {
+public class JobSeekerManager extends BaseManager<JobSeekerDao, JobSeeker, Integer> implements JobSeekerService {
     private final JobSeekerDao jobSeekerDao;
     private final UserService userService;
     private final MernisActivationService mernisActivationService;
@@ -28,45 +28,15 @@ public class JobSeekerManager implements JobSeekerService {
     public JobSeekerManager(final JobSeekerDao jobSeekerDao, final UserService userService,
                             final MernisActivationService mernisActivationService,
                             final EmailActivationService emailActivationService) {
+        super(jobSeekerDao, "Job seeker");
         this.jobSeekerDao = jobSeekerDao;
         this.userService = userService;
         this.mernisActivationService = mernisActivationService;
         this.emailActivationService = emailActivationService;
     }
 
-    @Override
-    public Result add(final JobSeeker jobSeeker) {
-        jobSeekerDao.save(jobSeeker);
-
-        return new SuccessResult(Messages.jobSeekerAdded);
-    }
-
     private Result arePasswordMatch(final String password, final String confirmPassword) {
         return password.equals(confirmPassword) ? new SuccessResult() : new ErrorResult(Messages.passwordsNotMatch);
-    }
-
-    @Override
-    public Result delete(final JobSeeker jobSeeker) {
-        jobSeekerDao.delete(jobSeeker);
-
-        return new SuccessResult(Messages.jobSeekerDeleted);
-    }
-
-    @Override
-    public DataResult<List<JobSeeker>> getAll() {
-        final List<JobSeeker> jobSeekers = jobSeekerDao.findAll();
-
-        return new SuccessDataResult<List<JobSeeker>>(jobSeekers);
-    }
-
-    @Override
-    public DataResult<JobSeeker> getById(final Integer id) {
-        final Optional<JobSeeker> jobSeeker = jobSeekerDao.findById(id);
-
-        if (jobSeeker.isEmpty())
-            return new ErrorDataResult<JobSeeker>(Messages.jobSeekerNotFound);
-
-        return new SuccessDataResult<JobSeeker>(jobSeeker.get());
     }
 
     @Override
@@ -109,19 +79,13 @@ public class JobSeekerManager implements JobSeekerService {
                 .identityNumber(jobSeekerForRegisterDto.getIdentityNumber())
                 .birthDate(jobSeekerForRegisterDto.getBirthDate())
                 .build();
-        jobSeekerDao.save(jobSeeker);
+
+        super.add(jobSeeker);
 
         emailActivationService.createAndSendActivationCodeByMail(jobSeeker, jobSeeker.getEmail());
         mernisActivationService.add(MernisActivation.builder().user(jobSeeker).build());
 
         return new SuccessResult(Messages.jobSeekerAdded);
-    }
-
-    @Override
-    public Result update(final JobSeeker jobSeeker) {
-        jobSeekerDao.save(jobSeeker);
-
-        return new SuccessResult(Messages.jobSeekerUpdated);
     }
 
 }

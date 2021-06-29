@@ -1,44 +1,24 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerCVEducationService;
-import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
+import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobSeekerCVEducationDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCVEducation;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobSeekerCVEducationManager implements JobSeekerCVEducationService {
+public class JobSeekerCVEducationManager extends BaseManager<JobSeekerCVEducationDao, JobSeekerCVEducation, Integer> implements JobSeekerCVEducationService {
     private final JobSeekerCVEducationDao jobSeekerCVEducationDao;
 
     @Autowired
     public JobSeekerCVEducationManager(final JobSeekerCVEducationDao jobSeekerCVEducationDao) {
+        super(jobSeekerCVEducationDao, "Job seeker CV education");
         this.jobSeekerCVEducationDao = jobSeekerCVEducationDao;
-    }
-
-    @Override
-    public Result add(final JobSeekerCVEducation jobSeekerCVEducation) {
-        jobSeekerCVEducationDao.save(jobSeekerCVEducation);
-
-        return new SuccessResult(Messages.jobSeekerCVEducationAdded);
-    }
-
-    @Override
-    public Result delete(final JobSeekerCVEducation jobSeekerCVEducation) {
-        jobSeekerCVEducationDao.delete(jobSeekerCVEducation);
-
-        return new SuccessResult(Messages.jobSeekerCVEducationDeleted);
-    }
-
-    @Override
-    public DataResult<List<JobSeekerCVEducation>> getAll() {
-        final List<JobSeekerCVEducation> jobSeekerCVEducations = jobSeekerCVEducationDao.findAll();
-
-        return new SuccessDataResult<List<JobSeekerCVEducation>>(jobSeekerCVEducations);
     }
 
     @Override
@@ -57,23 +37,6 @@ public class JobSeekerCVEducationManager implements JobSeekerCVEducationService 
                 : jobSeekerCVEducationDao.findAllByJobSeekerCV_IdOrderByGraduationDateDesc(jobSeekerCVId);
 
         return new SuccessDataResult<List<JobSeekerCVEducation>>(jobSeekerCVEducations);
-    }
-
-    @Override
-    public DataResult<JobSeekerCVEducation> getById(final Integer id) {
-        final Optional<JobSeekerCVEducation> jobSeekerCVEducation = jobSeekerCVEducationDao.findById(id);
-
-        if (jobSeekerCVEducation.isEmpty())
-            return new ErrorDataResult<JobSeekerCVEducation>(Messages.jobSeekerCVEducationNotFound);
-
-        return new SuccessDataResult<JobSeekerCVEducation>(jobSeekerCVEducation.get());
-    }
-
-    @Override
-    public Result update(final JobSeekerCVEducation jobSeekerCVEducation) {
-        jobSeekerCVEducationDao.save(jobSeekerCVEducation);
-
-        return new SuccessResult(Messages.jobSeekerCVEducationUpdated);
     }
 
 }
