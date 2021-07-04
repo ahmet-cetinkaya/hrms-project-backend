@@ -41,6 +41,21 @@ CREATE TABLE IF NOT EXISTS public.email_activations
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.employer_updates
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    user_id integer NOT NULL,
+    company_staff_id integer,
+    company_name character varying(100) NOT NULL,
+    website character varying(100) NOT NULL,
+    corporate_email character varying(100) NOT NULL,
+    phone character varying(15) NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    is_approved boolean NOT NULL,
+    is_deleted boolean NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS public.employers
 (
     user_id integer NOT NULL,
@@ -65,6 +80,8 @@ CREATE TABLE IF NOT EXISTS public.job_adverts
     application_deadline timestamp with time zone,
     is_active boolean NOT NULL,
     is_deleted boolean NOT NULL,
+    working_type_id smallint,
+    working_time_id smallint,
     PRIMARY KEY (id)
 );
 
@@ -156,7 +173,15 @@ CREATE TABLE IF NOT EXISTS public.job_seekers
     last_name character varying(50) NOT NULL,
     identity_number character(11) NOT NULL,
     birth_date date NOT NULL,
+    cv_id integer,
     PRIMARY KEY (user_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.job_seekers_favorite_job_adverts
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_seeker_id integer NOT NULL,
+    job_advert_id integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.languages
@@ -194,6 +219,21 @@ CREATE TABLE IF NOT EXISTS public.web_sites
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.working_times
+(
+    id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.working_types
+(
+    id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
+    name character varying(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 ALTER TABLE public.company_staff_verifications
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
@@ -209,6 +249,12 @@ ALTER TABLE public.company_staffs
 ALTER TABLE public.email_activations
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.employer_updates
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.employers (user_id)
     NOT VALID;
 
 
@@ -233,6 +279,18 @@ ALTER TABLE public.job_adverts
 ALTER TABLE public.job_adverts
     ADD FOREIGN KEY (job_position_id)
     REFERENCES public.job_positions (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_adverts
+    ADD FOREIGN KEY (working_time_id)
+    REFERENCES public.working_times (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_adverts
+    ADD FOREIGN KEY (working_type_id)
+    REFERENCES public.working_types (id)
     NOT VALID;
 
 
@@ -297,8 +355,26 @@ ALTER TABLE public.job_seeker_cvs
 
 
 ALTER TABLE public.job_seekers
+    ADD FOREIGN KEY (cv_id)
+    REFERENCES public.job_seeker_cvs (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seekers
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seekers_favorite_job_adverts
+    ADD FOREIGN KEY (job_advert_id)
+    REFERENCES public.job_adverts (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_seekers_favorite_job_adverts
+    ADD FOREIGN KEY (job_seeker_id)
+    REFERENCES public.job_seekers (user_id)
     NOT VALID;
 
 
