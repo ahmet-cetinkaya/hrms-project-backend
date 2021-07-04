@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Data
@@ -17,12 +18,12 @@ import lombok.*;
 @Entity
 @Table(name = "cities")
 public class City {
-    @Column(name = "id")
-    @Id
-    private short id;
+	@Column(name = "id")
+	@Id
+	private short id;
 
-    @NotBlank
-    @Size(max = 50)
-    @Column(name = "name")
-    private String name;
+	@NotBlank
+	@Size(max = 50)
+	@Column(name = "name")
+	private String name;
 }

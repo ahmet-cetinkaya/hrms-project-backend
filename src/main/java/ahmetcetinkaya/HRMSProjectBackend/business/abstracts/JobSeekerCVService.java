@@ -5,5 +5,5 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCV;
 
 public interface JobSeekerCVService extends BaseService<JobSeekerCV, Integer> {
-    DataResult<JobSeekerCV> getByJobSeeker_Id(int jobSeekerId);
+	DataResult<JobSeekerCV> getByJobSeeker_Id(int jobSeekerId);
 }

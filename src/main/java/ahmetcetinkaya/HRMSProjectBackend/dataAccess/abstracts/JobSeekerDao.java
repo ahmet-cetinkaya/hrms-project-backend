@@ -1,9 +1,11 @@
 package ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts;
 
-import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeeker;
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeeker;
+
 public interface JobSeekerDao extends JpaRepository<JobSeeker, Integer> {
-    Optional<JobSeeker> findByIdentityNumber(String identityNumber);
+	Optional<JobSeeker> findByIdentityNumber(String identityNumber);
 }
