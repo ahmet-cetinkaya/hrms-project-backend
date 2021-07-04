@@ -6,7 +6,7 @@ import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
 
 public interface UserService extends BaseService<User, Integer> {
-    DataResult<User> getByEmail(String email);
+	DataResult<User> getByEmail(String email);
 
-    Result isNotEmailExist(final String email);
+	Result isNotEmailExist(final String email);
 }

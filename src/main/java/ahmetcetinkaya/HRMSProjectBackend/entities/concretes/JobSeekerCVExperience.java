@@ -1,6 +1,5 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +15,6 @@ import lombok.*;
 @Builder
 @ToString
 @EqualsAndHashCode
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobSeekerCV"})
 @Entity
 @Table(name = "job_seeker_cv_experiences")
 public class JobSeekerCVExperience {

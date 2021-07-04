@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Data
@@ -17,14 +18,14 @@ import lombok.*;
 @Entity
 @Table(name = "languages")
 public class Language {
-    @NotBlank
-    @Size(min = 2, max = 2)
-    @Column(name = "id")
-    @Id
-    private String id;
+	@NotBlank
+	@Size(min = 2, max = 2)
+	@Column(name = "id")
+	@Id
+	private String id;
 
-    @NotBlank
-    @Size(max = 50)
-    @Column(name = "name")
-    private String name;
+	@NotBlank
+	@Size(max = 50)
+	@Column(name = "name")
+	private String name;
 }

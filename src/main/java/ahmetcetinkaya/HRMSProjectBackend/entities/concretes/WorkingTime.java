@@ -1,11 +1,15 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import lombok.*;
+
 import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -13,20 +17,20 @@ import org.hibernate.validator.constraints.Length;
 @Builder
 @ToString
 @EqualsAndHashCode
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobAdverts"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdverts" })
 @Entity
 @Table(name = "working_times")
 public class WorkingTime {
-    @Column(name = "id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private short id;
+	@Column(name = "id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private short id;
 
-    @NotBlank
-    @Length(max = 50)
-    @Column(name = "name")
-    private String name;
+	@NotBlank
+	@Length(max = 50)
+	@Column(name = "name")
+	private String name;
 
-    @OneToMany(mappedBy = "workingTime")
-    private List<JobAdvert> jobAdverts;
+	@OneToMany(mappedBy = "workingTime")
+	private List<JobAdvert> jobAdverts;
 }

@@ -8,7 +8,7 @@ import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto;
 import java.util.List;
 
 public interface JobAdvertService extends BaseService<JobAdvert, Integer> {
-    Result verifyById(int id);
+	Result verifyById(int id);
 
     DataResult<List<JobAdvert>> getAllByIsActive(boolean isActive);
 

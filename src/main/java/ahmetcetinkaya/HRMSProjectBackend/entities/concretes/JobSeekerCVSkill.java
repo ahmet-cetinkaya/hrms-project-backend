@@ -1,6 +1,5 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import java.time.LocalDateTime;
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import org.hibernate.validator.constraints.Length;
 @Builder
 @ToString
 @EqualsAndHashCode
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobSeekerCV"})
 @Entity
 @Table(name = "job_seeker_cv_skills")
 public class JobSeekerCVSkill {
