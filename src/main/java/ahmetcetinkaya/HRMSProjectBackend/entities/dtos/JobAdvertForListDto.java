@@ -1,8 +1,10 @@
 package ahmetcetinkaya.HRMSProjectBackend.entities.dtos;
 
-import ahmetcetinkaya.HRMSProjectBackend.core.entities.Dto;
 import java.time.LocalDateTime;
+
 import javax.validation.constraints.*;
+
+import ahmetcetinkaya.HRMSProjectBackend.core.entities.Dto;
 import lombok.*;
 
 @Data
@@ -12,26 +14,35 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 public class JobAdvertForListDto implements Dto {
-    @NotBlank
-    @Size(max = 100)
-    private String companyName;
+	@NotNull
+	int id;
 
-    @NotBlank
-    @Size(max = 50)
-    private String title;
+	@NotBlank
+	@Size(max = 100)
+	private String companyName;
 
-    @Positive
-    private int numberOfOpenPositions;
+	@NotBlank
+	private String cityName;
 
-    @Past
-    private LocalDateTime createdAt;
+	@NotBlank
+	@Size(max = 50)
+	private String title;
 
-    @Future
-    private LocalDateTime applicationDeadline;
+	@Positive
+	private int numberOfOpenPositions;
 
-    @PositiveOrZero
-    private int minSalary;
+	@NotBlank
+	private String workingTimeName;
 
-    @PositiveOrZero
-    private int maxSalary;
+	@Past
+	private LocalDateTime createdAt;
+
+	@Future
+	private LocalDateTime applicationDeadline;
+
+	@PositiveOrZero
+	private int minSalary;
+
+	@PositiveOrZero
+	private int maxSalary;
 }

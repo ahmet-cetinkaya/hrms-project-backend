@@ -1,24 +1,25 @@
 package ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts;
 
-import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobAdvert;
-import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobAdvert;
+import ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto;
+
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer> {
-    List<JobAdvert> findAllByIsActive(boolean isActive);
+	Page<JobAdvert> findAllByIsActive(boolean isActive, Pageable pageable);
 
-    @Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(e.companyName,p.title,j.numberOfOpenPositions,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p WHERE j.isActive=:isActive AND e.companyName=:companyName")
-    List<JobAdvertForListDto> findAllByIsActiveAndEmployer_CompanyNameForList(@Param("isActive") boolean isActive, @Param("companyName") String companyName);
+	@Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(j.id,e.companyName,c.name,p.title,j.numberOfOpenPositions,wt.name,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p JOIN j.city c JOIN j.workingTime wt WHERE j.isActive=:isActive AND e.companyName=:companyName")
+	Page<JobAdvertForListDto> findAllByIsActiveAndEmployer_CompanyNameForList(@Param("isActive") boolean isActive,
+			@Param("companyName") String companyName, Pageable pageable);
 
-    @Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(e.companyName,p.title,j.numberOfOpenPositions,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p WHERE j.isActive=:isActive")
-    List<JobAdvertForListDto> findAllByIsActiveForList(@Param("isActive") boolean isActive);
+	@Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(j.id,e.companyName,c.name,p.title,j.numberOfOpenPositions,wt.name,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p JOIN j.city c JOIN j.workingTime wt WHERE j.isActive=:isActive")
+	Page<JobAdvertForListDto> findAllByIsActiveForList(@Param("isActive") boolean isActive, Pageable pageable);
 
-    @Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(e.companyName,p.title,j.numberOfOpenPositions,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p WHERE j.isActive=:isActive ORDER BY j.createdAt DESC")
-    List<JobAdvertForListDto> findAllByIsActiveOrderByCreatedAtDescForList(@Param("isActive") boolean isActive);
-
-    @Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(e.companyName,p.title,j.numberOfOpenPositions,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p WHERE j.isActive=:isActive ORDER BY j.createdAt")
-    List<JobAdvertForListDto> findAllByIsActiveOrderByCreatedAtForList(@Param("isActive") boolean isActive);
+	@Query("SELECT new ahmetcetinkaya.HRMSProjectBackend.entities.dtos.JobAdvertForListDto(j.id,e.companyName,c.name,p.title,j.numberOfOpenPositions,wt.name,j.createdAt,j.applicationDeadline,j.minSalary,j.maxSalary) FROM JobAdvert j JOIN j.employer e JOIN j.jobPosition p JOIN j.city c JOIN j.workingTime wt WHERE j.isActive=:isActive AND c.id=:cityId AND wt.id=:workingTimeId")
+	Page<JobAdvertForListDto> findAllByIsActiveAndCityAndWorkingTimeForList(@Param("isActive") boolean isActive,
+			@Param("cityId") short cityId, @Param("workingTimeId") short workingTimeId, Pageable pageable);
 }
