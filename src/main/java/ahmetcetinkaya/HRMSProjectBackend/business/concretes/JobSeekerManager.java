@@ -94,5 +94,38 @@ public class JobSeekerManager extends BaseManager<JobSeekerDao, JobSeeker, Integ
 		return new SuccessResult(Messages.added("Job seeker"));
 	}
 
+	public DataResult<JobSeekersFavoriteJobAdvert> getFavoriteByJobSeekerIdAndJobAdvertId(final int jobSeekerId,
+			final int jobAdvertId) {
+		Optional<JobSeekersFavoriteJobAdvert> jobSeekersFavoriteJobAdvert = this.jobSeekersFavoriteJobAdvertDao
+				.findByJobSeeker_IdAndJobAdvert_Id(jobSeekerId, jobAdvertId);
 
+		if (jobSeekersFavoriteJobAdvert.isEmpty())
+			return new ErrorDataResult(Messages.notFound("Job seeker's favorite jobAdvert"));
+
+		return new SuccessDataResult(jobSeekersFavoriteJobAdvert.get());
+	}
+
+	public Result favoriteJobAdvert(final JobSeekersFavoriteJobAdvert jobSeekersFavoriteJobAdvert) {
+		boolean isThereSameFavorite = !this.jobSeekersFavoriteJobAdvertDao
+				.findByJobSeeker_IdAndJobAdvert_Id(jobSeekersFavoriteJobAdvert.getJobSeeker().getId(),
+						jobSeekersFavoriteJobAdvert.getJobAdvert().getId())
+				.isEmpty();
+		if (isThereSameFavorite)
+			return new ErrorResult(Messages.alreadyExists("Favorite job advert"));
+
+		this.jobSeekersFavoriteJobAdvertDao.save(jobSeekersFavoriteJobAdvert);
+
+		return new SuccessResult(Messages.added("Favorite job advert"));
+	}
+
+	public Result undoFavoriteJobAdvert(final int id) {
+		Optional<JobSeekersFavoriteJobAdvert> jobSeekersFavoriteJobAdvert = jobSeekersFavoriteJobAdvertDao.findById(id);
+
+		if (jobSeekersFavoriteJobAdvert.isEmpty())
+			return new ErrorDataResult(Messages.notFound("Favorite job advert"));
+
+		jobSeekersFavoriteJobAdvertDao.delete(jobSeekersFavoriteJobAdvert.get());
+
+		return new SuccessResult(Messages.deleted("Favorite job advert"));
+	}
 }

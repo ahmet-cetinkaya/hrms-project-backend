@@ -13,4 +13,10 @@ public interface JobSeekerService extends BaseService<JobSeeker, Integer> {
 	Result isNotNationalIdentityExist(String identityNumber);
 
 	Result register(JobSeekerForRegisterDto jobSeekerForRegisterDto);
+
+	DataResult<JobSeekersFavoriteJobAdvert> getFavoriteByJobSeekerIdAndJobAdvertId(int jobSeekerId, int jobAdvertId);
+
+	Result undoFavoriteJobAdvert(int id);
+
+	Result favoriteJobAdvert(JobSeekersFavoriteJobAdvert jobSeekersFavoriteJobAdvert);
 }
