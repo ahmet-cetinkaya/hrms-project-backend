@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.CompanyStaffVerificationService;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmailActivationService;
@@ -13,6 +14,8 @@ import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.UserService;
 import ahmetcetinkaya.HRMSProjectBackend.business.constants.Messages;
 import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.business.BusinessRules;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.image.ImageService;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.image.cloudinary.CloudinaryImageHelper;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.EmployerDao;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.EmployerUpdateDao;
@@ -29,17 +32,19 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 	private final UserService userService;
 	private final EmailActivationService emailActivationService;
 	private final CompanyStaffVerificationService companyStaffVerificationService;
+	private final ImageService imageService;
 
 	@Autowired
 	public EmployerManager(final EmployerDao employerDao, final EmployerUpdateDao employerUpdateDao,
 			final UserService userService, final EmailActivationService emailActivationService,
-			final CompanyStaffVerificationService companyStaffVerificationService) {
+			final CompanyStaffVerificationService companyStaffVerificationService, final ImageService imageService) {
 		super(employerDao, "Employer");
 		this.employerDao = employerDao;
 		this.employerUpdateDao = employerUpdateDao;
 		this.userService = userService;
 		this.emailActivationService = emailActivationService;
 		this.companyStaffVerificationService = companyStaffVerificationService;
+		this.imageService = imageService;
 	}
 
 	private Result arePasswordMatch(final String password, final String confirmPassword) {
@@ -108,7 +113,7 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 	}
 
 	@Override
-	public Result updateByUser(final EmployerForUpdateDto employerForUpdateDto) {
+	public Result updateByUser(final EmployerForUpdateDto employerForUpdateDto, MultipartFile companyImage) {
 		final Optional<Employer> employer = employerDao.findById(employerForUpdateDto.getEmployerId());
 		if (employer.isEmpty())
 			return new ErrorResult(
@@ -119,14 +124,17 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 		if (!businessRulesResult.isSuccess())
 			return businessRulesResult;
 
-		final EmployerUpdate employerUpdate = EmployerUpdate.builder()
+		final EmployerUpdate.EmployerUpdateBuilder employerUpdate = EmployerUpdate.builder()
 				.employer(employer.get())
 				.companyName(employerForUpdateDto.getCompanyName())
 				.website(employerForUpdateDto.getWebsite())
 				.corporateEmail(employerForUpdateDto.getCorporateEmail())
-				.phone(employerForUpdateDto.getPhone())
-				.build();
-		employerUpdateDao.save(employerUpdate);
+				.phone(employerForUpdateDto.getPhone());
+		if (companyImage != null) {
+			String companyImageUrl = imageService.save(companyImage).getData().getUrl();
+			employerUpdate.companyImageUrl(companyImageUrl);
+		}
+		employerUpdateDao.save(employerUpdate.build());
 
 		return new SuccessResult(
 				ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.awaitingApproval("Employer update"));
@@ -141,6 +149,13 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 
 		final Employer employer = super.getById(employerUpdate.get().getEmployer().getId()).getData();
 		employer.setCompanyName(employerUpdate.get().getCompanyName());
+		if (employerUpdate.get().getCompanyImageUrl() != null) {
+			if (employer.getCompanyImageUrl() != null) {
+				String imagePublicId = CloudinaryImageHelper.getImagePublicIdFromUrl(employer.getCompanyImageUrl());
+				imageService.delete(imagePublicId);
+			}
+			employer.setCompanyImageUrl(employerUpdate.get().getCompanyImageUrl());
+		}
 		employer.setWebsite(employerUpdate.get().getWebsite());
 		employer.setCorporateEmail(employerUpdate.get().getCorporateEmail());
 		employer.setPhone(employerUpdate.get().getPhone());

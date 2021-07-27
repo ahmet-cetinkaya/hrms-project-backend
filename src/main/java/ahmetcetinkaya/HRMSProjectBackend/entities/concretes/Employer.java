@@ -24,6 +24,9 @@ public class Employer extends User {
 	@Column(name = "company_name")
 	private String companyName;
 
+	@Column(name = "company_image_url")
+	private String companyImageUrl;
+
 	@NotBlank
 	@Size(max = 100)
 	@Column(name = "website")
@@ -42,10 +45,11 @@ public class Employer extends User {
 	@Builder(builderMethodName = "childBuilder")
 	public Employer(final int id, @NotBlank @Email @Size(max = 100) final String email,
 			@NotBlank @Size(max = 100) final String password, @NotBlank @Size(max = 100) final String companyName,
-			@NotBlank @Size(max = 100) final String website, @NotBlank @Size(max = 100) final String corporateEmail,
-			@NotBlank @Size(max = 15) final String phone) {
+			final String companyImageUrl, @NotBlank @Size(max = 100) final String website,
+			@NotBlank @Size(max = 100) final String corporateEmail, @NotBlank @Size(max = 15) final String phone) {
 		super(id, email, password);
 		this.companyName = companyName;
+		this.companyImageUrl = companyImageUrl;
 		this.website = website;
 		this.corporateEmail = corporateEmail;
 		this.phone = phone;

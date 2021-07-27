@@ -37,6 +37,9 @@ public class EmployerUpdate {
 	@Column(name = "company_name")
 	private String companyName;
 
+	@Column(name = "company_image_url")
+	private String companyImageUrl;
+
 	@NotBlank
 	@Size(max = 100)
 	@Column(name = "website")

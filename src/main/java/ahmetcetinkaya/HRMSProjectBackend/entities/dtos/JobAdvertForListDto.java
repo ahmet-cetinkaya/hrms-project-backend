@@ -21,6 +21,8 @@ public class JobAdvertForListDto implements Dto {
 	@Size(max = 100)
 	private String companyName;
 
+	private String companyImageUrl;
+
 	@NotBlank
 	private String cityName;
 

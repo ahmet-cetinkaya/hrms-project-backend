@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmployerService;
 import ahmetcetinkaya.HRMSProjectBackend.core.api.abstracts.BaseController;
@@ -57,8 +58,9 @@ public class EmployersController extends BaseController<EmployerService, Employe
 	}
 
 	@PutMapping("/byuser")
-	public ResponseEntity<Result> updateByUser(@Valid @RequestBody final EmployerForUpdateDto employerForUpdateDto) {
-		final Result result = employerService.updateByUser(employerForUpdateDto);
+	public ResponseEntity<Result> updateByUser(@Valid @ModelAttribute EmployerForUpdateDto employerForUpdateDto,
+			@RequestBody MultipartFile companyImage) {
+		final Result result = employerService.updateByUser(employerForUpdateDto, companyImage);
 
 		if (!result.isSuccess())
 			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
