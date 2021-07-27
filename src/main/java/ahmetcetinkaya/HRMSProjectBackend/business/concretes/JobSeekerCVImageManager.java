@@ -1,7 +1,6 @@
 package ahmetcetinkaya.HRMSProjectBackend.business.concretes;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.JobSeekerCVImageService;
 import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseManager;
 import ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages;
+import ahmetcetinkaya.HRMSProjectBackend.core.entities.Image;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.image.ImageService;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.image.cloudinary.CloudinaryImageHelper;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
 import ahmetcetinkaya.HRMSProjectBackend.dataAccess.abstracts.JobSeekerCVImageDao;
 import ahmetcetinkaya.HRMSProjectBackend.entities.concretes.JobSeekerCVImage;
@@ -31,14 +32,10 @@ public class JobSeekerCVImageManager extends BaseManager<JobSeekerCVImageDao, Jo
 
 	@Override
 	public Result addAndSave(final JobSeekerCVImage jobSeekerCVImage, final MultipartFile file) {
-		final Map<String, String> result = (Map<String, String>) imageService.save(file).getData();
-		jobSeekerCVImage.setUrl(result.get("url"));
+		final Image result = imageService.save(file).getData();
+		jobSeekerCVImage.setUrl(result.getUrl());
 
 		return super.add(jobSeekerCVImage);
-	}
-
-	private String getImageIdFromUrl(final String url) {
-		return url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("."));
 	}
 
 	@Override
@@ -48,8 +45,8 @@ public class JobSeekerCVImageManager extends BaseManager<JobSeekerCVImageDao, Jo
 			return new ErrorDataResult<JobSeekerCVImage>(
 					ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.deleted("Job seeker CV image"));
 
-		final String imageId = getImageIdFromUrl(jobSeekerCVImage.get().getUrl());
-		imageService.delete(imageId);
+		final var imagePublicId = CloudinaryImageHelper.getImagePublicIdFromUrl(jobSeekerCVImage.get().getUrl());
+		imageService.delete(imagePublicId);
 
 		jobSeekerCVImageDao.delete(jobSeekerCVImage.get());
 		return new SuccessResult(Messages.deleted("Job seeker CV Image"));

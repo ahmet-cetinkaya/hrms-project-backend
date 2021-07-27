@@ -2,6 +2,8 @@ package ahmetcetinkaya.HRMSProjectBackend.business.abstracts;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ahmetcetinkaya.HRMSProjectBackend.core.business.abstracts.BaseService;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.Result;
@@ -19,7 +21,9 @@ public interface EmployerService extends BaseService<Employer, Integer> {
 
 	Result register(EmployerForRegisterDto employerForRegister);
 
-	Result updateByUser(EmployerForUpdateDto employerForUpdateDto);
+	Result updateByUser(EmployerForUpdateDto employerForUpdateDto, MultipartFile companyImage);
 
 	Result verifyUpdate(int employerUpdateId);
+
+	Result denyUpdate(final int employerUpdateId);
 }

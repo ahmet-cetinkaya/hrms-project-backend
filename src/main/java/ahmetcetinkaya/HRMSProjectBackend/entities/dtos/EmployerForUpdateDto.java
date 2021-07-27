@@ -15,7 +15,7 @@ import lombok.*;
 @EqualsAndHashCode
 public class EmployerForUpdateDto implements Dto {
 	@NotNull
-	private int id;
+	private int employerId;
 
 	@NotBlank
 	@Size(max = 100)

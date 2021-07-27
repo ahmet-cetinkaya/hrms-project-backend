@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import ahmetcetinkaya.HRMSProjectBackend.business.abstracts.EmployerService;
 import ahmetcetinkaya.HRMSProjectBackend.core.api.abstracts.BaseController;
@@ -38,7 +39,8 @@ public class EmployersController extends BaseController<EmployerService, Employe
 
 	@GetMapping("/update/byisapprovedandisdeleted")
 	public ResponseEntity<DataResult<List<EmployerUpdate>>> getAllByIsApprovedAndIsDeleted(
-			@RequestParam final boolean isApproved, @RequestParam final boolean isDeleted) {
+			@RequestParam final boolean isApproved,
+			@RequestParam final boolean isDeleted) {
 		final DataResult<List<EmployerUpdate>> result = employerService.getAllByIsApprovedAndIsDeleted(isApproved,
 				isDeleted);
 
@@ -46,22 +48,22 @@ public class EmployersController extends BaseController<EmployerService, Employe
 	}
 
 	@PostMapping("/register")
-
 	public ResponseEntity<Result> register(@Valid @RequestBody final EmployerForRegisterDto employerForRegisterDto) {
 		final Result result = employerService.register(employerForRegisterDto);
 
 		if (!result.isSuccess())
-			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
 		return ResponseEntity.ok(result);
 	}
 
 	@PutMapping("/byuser")
-	public ResponseEntity<Result> updateByUser(@Valid @RequestBody final EmployerForUpdateDto employerForUpdateDto) {
-		final Result result = employerService.updateByUser(employerForUpdateDto);
+	public ResponseEntity<Result> updateByUser(@Valid @ModelAttribute EmployerForUpdateDto employerForUpdateDto,
+			@RequestBody MultipartFile companyImage) {
+		final Result result = employerService.updateByUser(employerForUpdateDto, companyImage);
 
 		if (!result.isSuccess())
-			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
 		return ResponseEntity.ok(result);
 	}
@@ -71,9 +73,18 @@ public class EmployersController extends BaseController<EmployerService, Employe
 		final Result result = employerService.verifyUpdate(employerUpdateId);
 
 		if (!result.isSuccess())
-			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
 		return ResponseEntity.ok(result);
 	}
 
+	@PutMapping("/deny/update")
+	public ResponseEntity<Result> denyUpdate(@RequestParam final int employerUpdateId) {
+		final Result result = employerService.denyUpdate(employerUpdateId);
+
+		if (!result.isSuccess())
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(result);
+	}
 }
