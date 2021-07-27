@@ -31,6 +31,10 @@ public class Messages {
 		return name + " has been verified.";
 	}
 
+	public static String denied(final String name) {
+		return name + " has been denied.";
+	}
+
 	public static String notVerified(final String name) {
 		return name + " could not be verified.";
 	}

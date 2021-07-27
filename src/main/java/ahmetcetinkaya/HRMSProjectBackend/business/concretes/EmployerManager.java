@@ -109,7 +109,7 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 
 	@Override
 	public Result updateByUser(final EmployerForUpdateDto employerForUpdateDto) {
-		final Optional<Employer> employer = employerDao.findById(employerForUpdateDto.getId());
+		final Optional<Employer> employer = employerDao.findById(employerForUpdateDto.getEmployerId());
 		if (employer.isEmpty())
 			return new ErrorResult(
 					ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.notFound("Employer"));
@@ -138,9 +138,6 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 		if (employerUpdate.isEmpty())
 			return new ErrorResult(
 					ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.notFound("Employer update"));
-		employerUpdate.get().setApproved(true);
-		employerUpdate.get().setDeleted(true);
-		employerUpdateDao.save(employerUpdate.get());
 
 		final Employer employer = super.getById(employerUpdate.get().getEmployer().getId()).getData();
 		employer.setCompanyName(employerUpdate.get().getCompanyName());
@@ -149,8 +146,12 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 		employer.setPhone(employerUpdate.get().getPhone());
 		super.update(employer);
 
+		employerUpdate.get().setApproved(true);
+		employerUpdate.get().setDeleted(true);
+		employerUpdateDao.save(employerUpdate.get());
+
 		return new SuccessResult(
-				ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.updated("Employer"));
+				ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.verified("Employer update"));
 	}
 
 }

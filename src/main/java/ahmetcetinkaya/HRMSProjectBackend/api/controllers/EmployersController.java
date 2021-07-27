@@ -38,7 +38,8 @@ public class EmployersController extends BaseController<EmployerService, Employe
 
 	@GetMapping("/update/byisapprovedandisdeleted")
 	public ResponseEntity<DataResult<List<EmployerUpdate>>> getAllByIsApprovedAndIsDeleted(
-			@RequestParam final boolean isApproved, @RequestParam final boolean isDeleted) {
+			@RequestParam final boolean isApproved,
+			@RequestParam final boolean isDeleted) {
 		final DataResult<List<EmployerUpdate>> result = employerService.getAllByIsApprovedAndIsDeleted(isApproved,
 				isDeleted);
 
@@ -46,12 +47,11 @@ public class EmployersController extends BaseController<EmployerService, Employe
 	}
 
 	@PostMapping("/register")
-
 	public ResponseEntity<Result> register(@Valid @RequestBody final EmployerForRegisterDto employerForRegisterDto) {
 		final Result result = employerService.register(employerForRegisterDto);
 
 		if (!result.isSuccess())
-			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
 		return ResponseEntity.ok(result);
 	}
@@ -61,7 +61,7 @@ public class EmployersController extends BaseController<EmployerService, Employe
 		final Result result = employerService.updateByUser(employerForUpdateDto);
 
 		if (!result.isSuccess())
-			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
 		return ResponseEntity.ok(result);
 	}
@@ -71,7 +71,7 @@ public class EmployersController extends BaseController<EmployerService, Employe
 		final Result result = employerService.verifyUpdate(employerUpdateId);
 
 		if (!result.isSuccess())
-			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
 		return ResponseEntity.ok(result);
 	}

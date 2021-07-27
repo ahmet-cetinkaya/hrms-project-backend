@@ -11,20 +11,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import ahmetcetinkaya.HRMSProjectBackend.core.entities.Image;
 import ahmetcetinkaya.HRMSProjectBackend.core.utilities.helpers.image.ImageService;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.DataResult;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.ErrorDataResult;
-import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.SuccessDataResult;
+import ahmetcetinkaya.HRMSProjectBackend.core.utilities.results.*;
 
 @Service
 public class CloudinaryImageManager implements ImageService {
-	private final Environment environment;
-
 	private final Cloudinary cloudinary;
 
 	@Autowired
 	public CloudinaryImageManager(final Environment environment) {
-		this.environment = environment;
 		cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name",
 				environment.getProperty("cloudinary.cloud.name"),
 				"api_key",
@@ -34,29 +30,36 @@ public class CloudinaryImageManager implements ImageService {
 	}
 
 	@Override
-	public DataResult<?> save(final MultipartFile file) {
+	public DataResult<Image> save(final MultipartFile file) {
 		final Map result;
 		try {
 			result = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
 		} catch (final IOException e) {
 			e.printStackTrace();
-			return new ErrorDataResult<Map>(e.getMessage());
+			return new ErrorDataResult<>(e.getMessage());
 		}
 
-		return new SuccessDataResult<Map>(result);
+		Image image = Image.builder()
+				.id(String.valueOf(result.get("public_id")))
+				.url(String.valueOf(result.get("url")))
+				.bytes(Integer.parseInt(String.valueOf(result.get("bytes"))))
+				.format(String.valueOf(result.get("format")))
+				.height(Integer.parseInt(String.valueOf(result.get("height"))))
+				.width(Integer.parseInt(String.valueOf(result.get("width"))))
+				.build();
+
+		return new SuccessDataResult<>(image);
 	}
 
 	@Override
-	public DataResult<?> delete(final String id) {
-		final Map result;
+	public Result delete(final String id) {
 		try {
-			result = cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
+			cloudinary.uploader().destroy(id, ObjectUtils.emptyMap());
 		} catch (final IOException e) {
 			e.printStackTrace();
-			return new ErrorDataResult<Map>(e.getMessage());
+			return new ErrorResult(e.getMessage());
 		}
 
-		return new SuccessDataResult<Map>(result);
+		return new SuccessResult();
 	}
-
 }
