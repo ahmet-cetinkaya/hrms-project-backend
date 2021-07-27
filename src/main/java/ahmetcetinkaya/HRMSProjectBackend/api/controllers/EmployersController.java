@@ -78,4 +78,13 @@ public class EmployersController extends BaseController<EmployerService, Employe
 		return ResponseEntity.ok(result);
 	}
 
+	@PutMapping("/deny/update")
+	public ResponseEntity<Result> denyUpdate(@RequestParam final int employerUpdateId) {
+		final Result result = employerService.denyUpdate(employerUpdateId);
+
+		if (!result.isSuccess())
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(result);
+	}
 }

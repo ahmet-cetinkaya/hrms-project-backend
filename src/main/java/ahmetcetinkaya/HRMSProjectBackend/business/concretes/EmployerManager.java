@@ -169,4 +169,23 @@ public class EmployerManager extends BaseManager<EmployerDao, Employer, Integer>
 				ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.verified("Employer update"));
 	}
 
+	@Override
+	public Result denyUpdate(final int employerUpdateId) {
+		final Optional<EmployerUpdate> employerUpdate = employerUpdateDao.findById(employerUpdateId);
+		if (employerUpdate.isEmpty())
+			return new ErrorResult(
+					ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.notFound("Employer update"));
+
+		if (employerUpdate.get().getCompanyImageUrl() != null) {
+			String imagePublicId = CloudinaryImageHelper
+					.getImagePublicIdFromUrl(employerUpdate.get().getCompanyImageUrl());
+			imageService.delete(imagePublicId);
+		}
+		employerUpdate.get().setApproved(false);
+		employerUpdate.get().setDeleted(true);
+		employerUpdateDao.save(employerUpdate.get());
+
+		return new SuccessResult(
+				ahmetcetinkaya.HRMSProjectBackend.core.business.constants.Messages.denied("Employer update"));
+	}
 }

@@ -24,4 +24,6 @@ public interface EmployerService extends BaseService<Employer, Integer> {
 	Result updateByUser(EmployerForUpdateDto employerForUpdateDto, MultipartFile companyImage);
 
 	Result verifyUpdate(int employerUpdateId);
+
+	Result denyUpdate(final int employerUpdateId);
 }
